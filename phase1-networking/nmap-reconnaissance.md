@@ -1,7 +1,7 @@
 ## Nmap Reconnaissance — SOC Analyst Notes
 
 ## What is Nmap?
-Nmap is an inductry tool used for reconnaissance. it is used to map a network to check what
+Nmap is an industry tool used for reconnaissance. it is used to map a network to check what
 devices are on a network and what services those devices are running. 
 
 ## Why Attackers Use It
@@ -31,7 +31,7 @@ Finally, the terminal completes the handshake by sending a TCP request with the 
 
 ## What a SOC Analyst Sees
 - One source IP
-- HUndreds of SYN packets in a very short time
+- Hundreds of SYN packets in a very short time
 - Packets hitting sequential or random ports
 - No completed three way handshake 
 - RST packets after each SYN-ACK response.
