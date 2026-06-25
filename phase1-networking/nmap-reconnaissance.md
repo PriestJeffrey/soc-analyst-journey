@@ -26,7 +26,7 @@ Finally, the terminal completes the handshake by sending a TCP request with the 
 | Command | What it does |
 |--------|--------------|
 | `nmap -sS 192.168.1.1` | this uses SYN scan. Sends SYN, gets SYN-ACK, sends RST. It never completes the handshake. it launches a stealthy network scan against the specific device.
-| `nmap -sV 192.168.1.1` | "Run Nmap against 192.168.1.1 and try to identify the services (and, where possible, their versions) running on any open ports." |
+| `nmap -sV 192.168.1.1` | Run Nmap against 192.168.1.1 and tries to identify the services the versions running on any open ports.|
 | nmap -O 192.168.1.1 | What operating system is this machine likely running? |
 
 ## What a SOC Analyst Sees
@@ -44,6 +44,6 @@ Finally, the terminal completes the handshake by sending a TCP request with the 
 | Shodan | shodan.io | shows what services the IP address is running publicly |
 
 ## Key Takeaways
-- Never leave sensitive ports open.
-- Firewalls should be used to block sensitive ports and unused ports
-- Unused ports should be blocked. 
+- Understanding how Nmap works allows a SOC analyst to recognize attacker reconnaissance behavior in network traffic before a full attack is launched.
+- Identifying which ports were targeted during a scan allows the SOC analyst to prioritize monitoring on those specific ports and services for follow-up attack activity.
+- Documenting every investigation gives a track record of targeted ports, helps you know what to do next time, and avoids guesswork.
