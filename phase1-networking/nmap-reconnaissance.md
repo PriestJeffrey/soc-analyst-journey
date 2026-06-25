@@ -25,10 +25,8 @@ Finally, the terminal completes the handshake by sending a TCP request with the 
 
 | Command | What it does |
 |--------|--------------|
-| `nmap -sS 192.168.1.1` | this uses SYN scan. Sends SYN, gets SYN-ACK, sends RST. It never completes the handshake.
-it launches a stealthy network scan against the specific device.
-| `nmap -sV 192.168.1.1` | "Run Nmap against 192.168.1.1 and try to identify the services
-(and, where possible, their versions) running on any open ports." |
+| `nmap -sS 192.168.1.1` | this uses SYN scan. Sends SYN, gets SYN-ACK, sends RST. It never completes the handshake. it launches a stealthy network scan against the specific device.
+| `nmap -sV 192.168.1.1` | "Run Nmap against 192.168.1.1 and try to identify the services (and, where possible, their versions) running on any open ports." |
 | nmap -O 192.168.1.1 | What operating system is this machine likely running? |
 
 ## What a SOC Analyst Sees
