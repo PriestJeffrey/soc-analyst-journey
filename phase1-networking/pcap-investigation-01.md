@@ -13,7 +13,7 @@ LAN segment broadcast address:  172.16.1[.]255
 - virustotal.com
 - abuseipdb.com
 - shodan.io
-- 
+  
 ## Investigation Steps (step by step what you did)
 1. After opening the pcap file, i applied a filter which was ip.src == 172.16.1.0/24 and ip.dst == 172.16.1.0/24
 2. It was wrong because, this filter gave me the results of only internal traffic both source and destination
@@ -31,7 +31,7 @@ LAN segment broadcast address:  172.16.1[.]255
 14. so i identifed the hostname, username, OS, the ID of the infection.
 
 ## Findings
-- Infected IP - 172.16.166
+- Infected IP - 172.16.1.66
 - Hostname - DESKTOP-SKBR25F
 - Username - ccollier 
 - Malware Family - STRRAT 
@@ -42,7 +42,7 @@ LAN segment broadcast address:  172.16.1[.]255
 ## Indicators of Compromise (IOCs)
 - suscpious IP address ( 141.98.10.79 )
 - unusual ports src port: 49754 dst: 12132
-- usual amount of packets that was being sent.
+- STRRAT malware — Infection ID: 1BE8292C
 
 ## Conclusion
 The machine DESKTOP-SKBR25F was infected with STRRAT, a Java-based Remote Access Trojan. 
