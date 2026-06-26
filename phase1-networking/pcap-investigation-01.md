@@ -40,7 +40,7 @@ LAN segment broadcast address:  172.16.1[.]255
 - Beaconing Interval - every 5 seconds
 
 ## Indicators of Compromise (IOCs)
-- suscpious IP address ( 141.98.10.79 )
+- suspicious IP address ( 141.98.10.79 )
 - unusual ports src port: 49754 dst: 12132
 - STRRAT malware — Infection ID: 1BE8292C
 
