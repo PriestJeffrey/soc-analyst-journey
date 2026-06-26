@@ -1,4 +1,4 @@
-## Incident Report — STRRAT C2 Traffic Analysis
+## Incident Report — Likely Koi Stealer C2 Traffic Analysis
 
 ## Scenario
 LAN segment details:
