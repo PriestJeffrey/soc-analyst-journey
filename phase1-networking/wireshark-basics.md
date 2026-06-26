@@ -1,4 +1,4 @@
-## Nmap Reconnaissance — SOC Analyst Notes
+## Wireshark Basics — SOC Analyst Notes.
 
 ## What is wireshark?
 Wireshark is a network protocol analyzer that lets you capture and interactively browse the traffic running on a computer network.
@@ -51,8 +51,11 @@ a terminal to filter data before opening it in the GUI
 ip.addr == [IP]: Captures bidirectional traffic (both source and destination)
 ip.src or ip.dst: Used for narrow, unidirectional searches
 
+## Wireshark for detecting port scan
+- To detect port scan, you can filter connections like TCP SYNs. example; tcp.flags.syn == 1 && tcp.flags.ack == 0
+
 ## Key Takeaways
-- Use T-shark to open large pcap files.
+- To avoid software instability, use T-Shark to filter pcaps larger than 500 MB down to a manageable size before attempting to open them in the Wireshark GUI
 - Understanding how wireshark works helps soc analyst to know what traffic came from the attacker.
 - Understand the difference between ip.addr (bidirectional) and ip.src/dst (unidirectional)
 to ensure you are capturing the full context of a conversation during an investigation
