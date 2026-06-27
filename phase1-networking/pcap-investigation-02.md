@@ -48,7 +48,7 @@ Connection: keep-alive
 13. The HTTP method that was being used was the POST method. An HTTP POST request is a method used to send data to a web server to create a new resource,
 update existing information, or trigger a specific action. The infected machine was repeatedly sending POST requests to an external IP. And that is pure data exfiltration.
 14. User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64) MSIE 7.0 is Internet Explorer 7.
-That browser was relhttps://uppbeat.io/lutseased in 2006 and has been dead for years. No legitimate software in 2024 uses that User-Agent. it's purely a disguise technique to blend into web traffic
+That browser was in 2006 and has been dead for years. No legitimate software in 2024 uses that User-Agent. it's purely a disguise technique to blend into web traffic
 and avoid triggering modern security filters that look for known malware signatures.
 15. POST /foots.php HTTP/1.1.
 A .php file on an external server receiving binary data repeatedly. That's not a legitimate website.
@@ -70,10 +70,10 @@ so in essence the malware is exfiltrating data by hiding it's identity and has c
 
 ## Conclusion
 The machine with the IP 172.17.0.99 was infected with likely Koi Stealer based on the traffic patterns.
-The malware established a C2 channel to 172.17.0.99. 
+The malware established a C2 channel to 79.124.78.197. 
 This gave the attacker the access to exfiltrate data to a .php file on an external server to receive binary data repeatedly. 
 
 ## What This Taught Me About SOC Work
-What this lab has taught me about SOC work is that, you need to be vigilant and precise. No guesswork. 
-It has also taught me that, you cannot skip the basics in networking.
-it has also taught me how knowing tools like wireshark is not an option in soc work.
+- A User-Agent string claiming to be Internet Explorer 7 in 2024 traffic is an immediate indicator of compromise.
+- Attackers use HTTP for C2 communication because it allows them to blend with legitimate traffic and avoid detection.
+- Repeated POST requests from an internal machine to an external IP are a strong signal that data exfiltration is occurring.
