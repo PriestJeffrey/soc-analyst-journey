@@ -48,7 +48,7 @@ Connection: keep-alive
 13. The HTTP method that was being used was the POST method. An HTTP POST request is a method used to send data to a web server to create a new resource,
 update existing information, or trigger a specific action. The infected machine was repeatedly sending POST requests to an external IP. And that is pure data exfiltration.
 14. User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64) MSIE 7.0 is Internet Explorer 7.
-That browser was in 2006 and has been dead for years. No legitimate software in 2024 uses that User-Agent. it's purely a disguise technique to blend into web traffic
+That browser was release in 2006 and has been dead for years. No legitimate software in 2024 uses that User-Agent. it's purely a disguise technique to blend into web traffic
 and avoid triggering modern security filters that look for known malware signatures.
 15. POST /foots.php HTTP/1.1.
 A .php file on an external server receiving binary data repeatedly. That's not a legitimate website.
