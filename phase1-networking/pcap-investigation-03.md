@@ -53,7 +53,7 @@ Content-Length: 159232
 Date: Thu, 15 Aug 2024 00:12:00 GMT
 Content-Type: text/html; charset=ISO-8859-1
 
-13. The HTTP method that was being used was the GET method. An HTTP GET request is a method used request and retrieve data from a specified resource on a web server.
+14. The HTTP method that was being used was the GET method. An HTTP GET request is a method used request and retrieve data from a specified resource on a web server.
 
 GET /data/0f60a3e7baecf2748b1c8183ed37d1e4 HTTP/1.1
 Connection: Keep-Alive
@@ -68,9 +68,8 @@ It is a built-in Windows system service that downloads and uploads files in the 
 ensuring your computer's internet connection remains fast and responsive for your active apps and daily activities.
 
 The MZ at the start of a file indicates that it is an executable file, 
-such as a .exe or .dll. It is a magic number (or signature) that signals the operating system that the downloaded content contains program instructions that can be run or loaded
+such as a .exe or .dll. It is a magic number (or signature) that signals the operating system that the downloaded content contains program instructions that can be run or loaded.
 
-13. so i identifed the hostname, username, OS, the ID of the infection.
 
 ## Findings
 - Infected IP - 10.8.15.133
@@ -88,8 +87,9 @@ User-Agent: Microsoft BITS/7.8
 the host machine got infected by an accepted cookie from malicious website. 
 The attacker now established C2 communication and used a legitimate software called BITS 
 to download a malicious software in the background to evade detection by the user and security tools that something malicious 
-is being downloaded. and after the download, it'll now execute it
+is being downloaded and execute the payload on the infected machine.
 
 ## What This Taught Me About SOC Work
-- I've understood that attackers can advantage of even legitimate tools in a host machine to execute their work.
-- I've learnt that it's not advisable to accept every cookie you see from a website.
+- Attackers abuse legitimate Windows tools like BITS to download malware, making detection harder because the traffic blends in with normal system activity
+- An MZ header in downloaded content is an immediate red flag; it means an executable was transferred, which warrants immediate investigation
+- Living off the Land attacks require SOC analysts to monitor not just suspicious tools but also trusted Windows services like BITS, WMI, and PowerShell.
