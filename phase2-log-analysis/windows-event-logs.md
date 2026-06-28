@@ -18,14 +18,14 @@ It also records object access, privilege use, policy changes, and process creati
 
 ### Application and System Logs
 The **Application log** captures events from software running on the system, such as application crashes or specific errors. 
-The **System log** captures events related to the operating system itself, including driver issues, system reboots, and the starting or stopping of services.
+The **System log** captures events related to Windows installation and software updates, system reboots, and the starting or stopping of services.
 
 ## Event IDs and Fields I Practiced
 | ID or Field | What it shows |
 | :--- | :--- |
 | **Event ID 4624** | Indicates a successful logon occurred. |
 | **Event ID 4625** | Failed logon attempt |
-| **EVent ID 4688** | New process created catches commands run by attackers |
+| **Event ID 4688** | New process created catches commands run by attackers |
 | **Event ID 4720** | New user account created |
 | **Event ID 1102** | Security audit log cleared a major red flag, attackers do this to cover tracks |
 | **Logon Type 10** | Specific field indicating a Remote Desktop (RDP) logon. |
@@ -46,7 +46,7 @@ For example, the analyst can determine if a session was a brand-new login or a r
 | **PowerShell Logs** | Records the actual commands executed via PowerShell if script block and module logging are enabled. |
 | **Sysmon** | An additional layer that provides deep visibility into network connections, file changes, and process creations. |
 
-The **Sysymon** matters more in a SOC environment because it fills the critical visibility gaps left by 
+The **Sysmon** matters more in a SOC environment because it fills the critical visibility gaps left by 
 default windows event logs.
 
 ## Key Takeaways
