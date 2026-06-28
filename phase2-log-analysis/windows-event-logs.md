@@ -24,6 +24,10 @@ The **System log** captures events related to the operating system itself, inclu
 | ID or Field | What it shows |
 | :--- | :--- |
 | **Event ID 4624** | Indicates a successful logon occurred. |
+| **Event ID 4625** | Failed logon attempt |
+| **EVent ID 4688** | New process created catches commands run by attackers |
+| **Event ID 4720** | New user account created |
+| **Event ID 1102** | Security audit log cleared a major red flag, attackers do this to cover tracks |
 | **Logon Type 10** | Specific field indicating a Remote Desktop (RDP) logon. |
 | **Logon Type 3** | Specific field indicating a network-based logon. |
 | **Source IP Address** | The network address from which the connection originated. |
@@ -41,6 +45,9 @@ For example, the analyst can determine if a session was a brand-new login or a r
 | **Task Scheduler** | Shows the creation of scheduled tasks, often used by attackers for persistence. |
 | **PowerShell Logs** | Records the actual commands executed via PowerShell if script block and module logging are enabled. |
 | **Sysmon** | An additional layer that provides deep visibility into network connections, file changes, and process creations. |
+
+The **Sysymon** matters more in a SOC environment because it fills the critical visibility gaps left by 
+default windows event logs.
 
 ## Key Takeaways
 *   **Focus on Structure over Memorization:** Instead of trying to memorize every event ID, focus on understanding the structure of the logs to identify who, what, where, and when an event occurred.
