@@ -25,7 +25,9 @@ LAN segment broadcast address:  172.16.1[.]255
 8. i checked up the ip address on virustotal.com and it was flagged as Malicious by Forcepoint & ThreatSeeker and Suspicious by AlphaSOC.
 9. there were no results in abuseipd.com & shodan.io but it didn't mean the traffic was clean. it was the C2 server.
 10. i used this filter  ip.addr == 141.98.10.79 to filter the traffic.
-11. I looked at the protocol and it was a TCP and the ports were quite unusal. the src port was 49754 and the dst port was 12132.
+11. the attacker used the port 12132 because, the Wireshark software labels it as TCP because it doesn't recognise any standard protocol running on that port. the attacker will decide to use such port because some firewalls will only inspect well known ports.
+
+it's just to hide their activities from firewalls so that they can blend with the traffic. the src port was 49754 and the dst port was 12132.
 12. i followed the TCP stream to check if the information in the stream were readable texts or they were gibberish and it was readable.
 13. the readable texts followed a particular pattern ping|STRRAT|1BE8292C|DESKTOP-SKBR25F|ccollier|Windows 11 Pro|64-bit|Windows Defender
 14. so i identifed the hostname, username, OS, the ID of the infection.
