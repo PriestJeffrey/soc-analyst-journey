@@ -21,9 +21,9 @@ The Security Log is your primary log as a SOC analyst.
 
 | Logon Type | What it Means                                      |
 |------------|----------------------------------------------------|
-| 2          | Interactive — someone physically at the machine    |
-| 3          | Network — accessing a shared resource remotely     |
-| 10         | RemoteInteractive — RDP session                    |
+| 2          | Interactive; someone physically at the machine    |
+| 3          | Network; accessing a shared resource remotely     |
+| 10         | RemoteInteractive; RDP session                    |
 
 ## When investigating a suspicious login, answer these four questions from the log:
 What happened?
