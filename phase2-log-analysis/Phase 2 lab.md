@@ -39,7 +39,7 @@ C:\Windows\System32\net.exe via C:\Windows\System32\WindowsPowerShell\v1.0\power
 IntegrityLevel: High privileges. The command "C:\windows\system32\net.exe" localgroup administrators maps to 
 MITRE ATT&CK technique T1069.001- local groups  Permission Groups Discovery. 
 This indicates that the attacker wanted to know the names of the admins which have the administrator privileges on the machine. 
-this is so that the can target one of those accounts and see if they can steal credentials
+they can target one of those accounts and see if they can steal credentials
 
 **Finding 2: ipconfig**
 On 30/06/2026 at 12:11:10 am, user RHEMA-MediaTech\rhema on machine RHEMA-MediaTech executed 
@@ -50,7 +50,7 @@ This indicates that the attacker was trying to know the system networking config
 **Finding 3: systeminfo**
 On 30/06/2026 at 12:11:17 am, user RHEMA-MediaTech\rhema on machine RHEMA-MediaTech executed 
 C:\Windows\System32\systeminfo.exe via C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe with 
-IntegrityLevel: High privileges. The command "C:\windows\system32\systeminfo.exe" maps to MITRE ATT&CK technique T 1082 System information Discovery. 
+IntegrityLevel: High privileges. The command "C:\windows\system32\systeminfo.exe" maps to MITRE ATT&CK technique T1082 System information Discovery. 
 This indicates that the attacker was trying to know details of the machine. details like name of the Host machine, OS name, OS version, product ID, BIOS Version... just to mention a few
 
 ## MITRE ATT&CK Techniques Identified
@@ -61,7 +61,11 @@ This indicates that the attacker was trying to know details of the machine. deta
 | systeminfo | T1082 | System Information Discovery | 
 
 ## Conclusion
-In this lab, I executed three reconnaissance commands on my own machine via PowerShell. Sysmon captured each command as Event ID 1, logging the full command line, parent process, user, and integrity level. A real attacker running these same commands would know net localgroup administrators: the names of admin accounts on the machine, ipconfig: the IP address and network configuration and systeminfo: the OS, patch level, hostname, domain
+In this lab, I executed three reconnaissance commands on my own machine via PowerShell. Sysmon captured each command as Event ID 1, logging the full command line, parent process, user, and integrity level. 
+A real attacker running these same commands would learn:
+- net localgroup administrators: names of privileged accounts to target for credential theft
+- ipconfig: the network layout and IP addressing scheme
+- systeminfo: OS version, patch level, and domain information to identify exploitable vulnerabilities
 
 ## What This Taught Me About SOC Work
 - Attackers leverage on minor information we are likely to ignore like names of administrators on a machine.
