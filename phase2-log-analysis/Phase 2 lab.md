@@ -33,7 +33,7 @@ resulting events in Sysmon logs, mapped to MITRE ATT&CK techniques.
 
 ## Findings
 
-**Finding 1 — net localgroup administrators**
+**Finding 1: net localgroup administrators**
 On 30/06/2026  at 12:10:58am, user RHEMA-MediaTech\rhema on machine RHEMA-MediaTech executed 
 C:\Windows\System32\net.exe via C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe with 
 IntegrityLevel: High privileges. The command "C:\windows\system32\net.exe" localgroup administrators maps to 
@@ -41,19 +41,19 @@ MITRE ATT&CK technique T1069.001- local groups  Permission Groups Discovery.
 This indicates that the attacker wanted to know the names of the admins which have the administrator privileges on the machine. 
 this is so that the can target one of those accounts and see if they can steal credentials
 
-**Finding 2 — ipconfig**
+**Finding 2: ipconfig**
 On 30/06/2026 at 12:11:10 am, user RHEMA-MediaTech\rhema on machine RHEMA-MediaTech executed 
 C:\Windows\System32\ipconfig.exe via C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe with 
-IntegrityLevel: High privileges. The command "C:\windows\system32\ipconfig.exe" maps to MITRE ATT&CK technique T1016 System Network Configuration discovery . 
+IntegrityLevel: High privileges. The command "C:\windows\system32\ipconfig.exe" maps to MITRE ATT&CK technique T1016 System Network Configuration discovery. 
 This indicates that the attacker was trying to know the system networking configurations of the machine.
 
-**Finding 3 — systeminfo**
+**Finding 3: systeminfo**
 On 30/06/2026 at 12:11:17 am, user RHEMA-MediaTech\rhema on machine RHEMA-MediaTech executed 
 C:\Windows\System32\systeminfo.exe via C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe with 
 IntegrityLevel: High privileges. The command "C:\windows\system32\systeminfo.exe" maps to MITRE ATT&CK technique T 1082 System information Discovery. 
 This indicates that the attacker was trying to know details of the machine. details like name of the Host machine, OS name, OS version, product ID, BIOS Version... just to mention a few
 
-## ## MITRE ATT&CK Techniques Identified
+## MITRE ATT&CK Techniques Identified
 | Command | Technique ID | Technique Name |
 |---------|-------------|----------------|
 | net localgroup administrators | T1069.001 | Permission Groups Discovery |
@@ -61,9 +61,10 @@ This indicates that the attacker was trying to know details of the machine. deta
 | systeminfo | T1082 | System Information Discovery | 
 
 ## Conclusion
-[One paragraph. What happened, how, and what the attacker achieved.]
+In this lab, I executed three reconnaissance commands on my own machine via PowerShell. Sysmon captured each command as Event ID 1, logging the full command line, parent process, user, and integrity level. A real attacker running these same commands would know net localgroup administrators: the names of admin accounts on the machine, ipconfig: the IP address and network configuration and systeminfo: the OS, patch level, hostname, domain
 
 ## What This Taught Me About SOC Work
-- 
-- 
--
+- Attackers leverage on minor information we are likely to ignore like names of administrators on a machine.
+- When attacker runs systeminfo, they're collecting details about the machine like OS version, patch level, hostname, domain, hardware specs
+- When i see IntegrityLevel: High, it means the attacker has already compromised an admin account and that's why it was able to run
+the powershell as an admin. This is not the start of reconnaissance, its the middle. At this point, the machine has already been compromised.
