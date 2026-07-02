@@ -37,7 +37,7 @@ On Oct 11, 2023 at 07:42:08 UTC, source IP 10.0.0.130 initiated an SMB2 connecti
 | Lateral Movement |T1021.002  | Remote Services: SMB/Windows Admin Shares |
 
 ## Indicators of Compromise (IOCs)
-- 
+- Unusual amount of traffic flowing between these two IP addresses; 10.0.0.130 and 10.0.0.133
 - 
 
 ## Conclusion
