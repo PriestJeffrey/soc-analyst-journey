@@ -1,4 +1,4 @@
-## Incident Report — PsExec Hunt
+## Incident Report - PsExec Hunt
 
 ## Scenario
 An IDS alert flagged suspicious lateral movement activity on the network. 
