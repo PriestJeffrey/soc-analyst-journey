@@ -26,9 +26,10 @@ because there was a suspicion of lateral movement activity on the network.
 
 ## Findings
 1. On Oct 11, 2023 at 07:42:08 UTC, source IP 10.0.0.130 initiated an SMB2 connection to destination IP 10.0.0.133 on port 445. PSEXESVC.exe was written to \10.0.0.133\ADMIN$ via a Write Request over SMB2. This maps to MITRE ATT&CK technique T1021.002 - Remote Services: SMB/Windows Admin Shares. This indicates the attacker copied the PsExec service binary onto the victim machine to enable remote code execution.
- ![psexesvc_Write Response packet](screenshots/psexesvc-write-response.png) ![top talker](screenshots/top-talker.png)
+ ![psexesvc_Write Response packet](screenshots/psexesvc-write-response.png)
+![top talker](screenshots/top-talker.png)
 
-2. On Oct 11, 2023 07:46, source IP 10.0.0.130 Attacker attempted to authenticate using account IEUser on 10.0.0.131 (HR-PC) on port 49703 It resulted in an access denial; STATUS_ACCESS_DENIED - authentication failed This maps to MITRE ATT&CK technique T1021.002 — Remote Services: SMB/Windows Admin Shares. This indicates that, the attacker wanted to compromise the HR-PC after compromising the SALES-PC
+3. On Oct 11, 2023 07:46, source IP 10.0.0.130 Attacker attempted to authenticate using account IEUser on 10.0.0.131 (HR-PC) on port 49703 It resulted in an access denial; STATUS_ACCESS_DENIED - authentication failed This maps to MITRE ATT&CK technique T1021.002 — Remote Services: SMB/Windows Admin Shares. This indicates that, the attacker wanted to compromise the HR-PC after compromising the SALES-PC
 ![STATUS_ACCESS_DENIED HR-PC](screenshots/status-access-denied.png)
 ## MITRE ATT&CK Techniques Identified
 | Activity | Technique ID | Technique Name |
