@@ -18,34 +18,38 @@ or shares were abused during the attack.
 
 ## Investigation Steps
 1. Opened a PCAP file gotten from cyberdefenders to analyze a an IDS alert that was flagged
-because it was there was a suspicion of lateral movement activity on the network.
-2. So i decided to look at the machine that was compromised by the machine and i saw that the victim was receiving a lot of
-traffic. the victim's machine was 10.0.0.133 and the attacker's machine was 10.0.0.130. I got this by chcecking for conversations on the statistic tab.
-3. i filtered for SMB traffic using the filter smb2. i didn't fully understand by i was supposed to use the smb2 traffic then i found out that, there are two major versions of SMB that ie; SMB1 which is old, largely disabled on modern Windows, and infamous for the EternalBlue exploit used in WannaCry and there is SMB2/SMB3 which is the modern versions used by Windows 7 and above.
-4. the PsExec on modern windows uses SMB2.
-5. i found out in the conversation tab that the attacker was listening on port 445 and that is the standard SMB port.
-6. i filtered the traffic with this smb2 and ip.addr == 10.0.0.130 . and i found out these; 10.0.0.133 wrote a file called PSEXESVC.exe to \\10.0.0.133\ADMIN$ and 10.0.0.130 created a request to \\10.0.0.133\IPC$.
-7. this means that, the attacker copied files onto the victim's machine.
-8.  Wrote a structured finding for each event.
+because there was a suspicion of lateral movement activity on the network.
+2. Navigated to statistics, then to conversation to identify top talkers and to determine attacker and victim IPs
+3. Filtered the traffic with this smb2 and ip.addr == 10.0.0.130.
+4. Looked at the traffic and found a file that was being copied in the info section in wireshark. It showed [TCP ACKed unseen segment] Write Response, File: PSEXESVC.exe
+5.  Wrote a structured finding for each event.
 
 ## Findings
-On Oct 11, 2023 at 07:42:08 UTC, source IP 10.0.0.130 initiated an SMB2 connection to destination IP 10.0.0.133 on port 445. PSEXESVC.exe was written to \10.0.0.133\ADMIN$ via a Write Request over SMB2. This maps to MITRE ATT&CK technique T1021.002 - Remote Services: SMB/Windows Admin Shares. This indicates the attacker copied the PsExec service binary onto the victim machine to enable remote code execution.
+1. On Oct 11, 2023 at 07:42:08 UTC, source IP 10.0.0.130 initiated an SMB2 connection to destination IP 10.0.0.133 on port 445. PSEXESVC.exe was written to \10.0.0.133\ADMIN$ via a Write Request over SMB2. This maps to MITRE ATT&CK technique T1021.002 - Remote Services: SMB/Windows Admin Shares. This indicates the attacker copied the PsExec service binary onto the victim machine to enable remote code execution.
+
+2. On Oct 11, 2023 07:46, source IP 10.0.0.130 Attacker attempted to authenticate using account IEUser on 10.0.0.131 (HR-PC) on port 49703 It resulted in an access denial; STATUS_ACCESS_DENIED - authentication failed This maps to MITRE ATT&CK technique T1021.002 — Remote Services: SMB/Windows Admin Shares. This indicates that, the attacker wanted to compromise the HR-PC after compromising the SALES-PC
 
 ## MITRE ATT&CK Techniques Identified
 | Activity | Technique ID | Technique Name |
 |----------|-------------|----------------|
 | Lateral Movement |T1021.002  | Remote Services: SMB/Windows Admin Shares |
+| Stolen credentials | T1078| Valid Accounts |
 
 ## Indicators of Compromise (IOCs)
-- Unusual amount of traffic flowing between these two IP addresses; 10.0.0.130 and 10.0.0.133
-- 
+- PSEXESVC.exe; PsExec service binary written to \\10.0.0.133\ADMIN$
+- Attacker IP: 10.0.0.130
+- Victim IP: 10.0.0.133
+- HR-PC IP: 10.0.0.131
+- Credentials attempted: IEUser
+- Credentials used on SALES-PC: ssales
+- Victim hostname: SALES-PC
 
 ## Conclusion
 
-In this lab, i was finding out the lateral movement of an attacker and what machines it compromised.
+The attacker first compromised the Sales-PC using the technique of lateral movement. The attacker used PsExec over SMB2 to move laterally and installed PSEXESVC.exe. The attacker copied the PsExec service binary onto the victim machine to enable remote code execution, then tried gaining access to the HR-PC but the authentication failed because of wrong credentials. the attacker was able to gain remote access to the victim's PC using the PsExec tool in windows
 
 
 ## What This Taught Me About SOC Work
-- when you see a lot of traffic coming from a a specific address, it must create suspicion.
+- Seeing PsExec activity running from a SALES-PC rather than an IT admin machine is an indicator that the SALES-PC has been compromised. PsExec should only be run by administrators not end-user workstations. 
 - attackers will normally like to hide their operations using legitimate tools in the operating system. 
-- 
+- An IOC must be something that stands out as abnormal. 
