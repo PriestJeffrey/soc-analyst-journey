@@ -3,7 +3,7 @@
 ## Scenario
 A suspicious activity was identified on a web server within the company's intranet. 
 The task was to analyze a PCAP file to understand how the Apache Tomcat web server was compromised
-and to the malicious activities that led to the compromise of the Apache Tomcat web server.
+and the malicious activities that led to the compromise of the Apache Tomcat web server.
 - Protocol of interest: HTTP
 - Tool used by attacker: Gobuster, Tomcat Manager
 - Investigation focus: Web server reconnaissance, credential leak, WAR file upload
@@ -19,7 +19,8 @@ and to the malicious activities that led to the compromise of the Apache Tomcat 
 because there was a suspicion activity that was identified on a web server.
 2. Navigated to statistics, then to conversation to identify top talkers and to determine attacker and victim IPs
 3. Filtered the traffic with this http and ip.addr == 14.0.0.120
-4. Looked at the traffic and found that the protocols that were being used were HTTP protocols.
+4. Looked at the traffic and found that the protocols that were being used were HTTP protocols GET /host-manager/html HTTP/1.1
+User-Agent: gobuster/3.6
 5. Wrote a structured finding for each event.
 
 ## Findings
@@ -27,7 +28,7 @@ because there was a suspicion activity that was identified on a web server.
 
 2. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 sent HTTP GET requests to destination IP 10.0.0.112 on port 8080. The User-Agent identified the tool as gobuster. The attacker requested /host-manager, /host-manager/html, and /manager. This maps to MITRE ATT&CK technique T1595.003 - Wordlist Scanning. This indicates the attacker used Gobuster to systematically probe the web server for exposed admin panels and directories.
 
-3. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 sent HTTP GET requests to destination IP 10.0.0.112 on port 8080. The User-Agent identified the tool as gobuster. The attacker requested /host-manager/html. This maps to MITRE ATT&CK technique T1589 - Gather Victim Identity Information. This indicates that the attacker identified the credentials of the web server which happens to be the default credentials of the webs server which were not changed. The 401 Unauthorized response leaked the credentials tomcat:s3cret from the server's configuration file tomcat-users.xml. 
+3. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 received a 401 Unauthorized response from the destination IP 10.0.0.112 on port 8080. The User-Agent identified the tool as gobuster. The attacker requested /host-manager/html. This maps to MITRE ATT&CK technique T1589 - Gather Victim Identity Information. This indicates that the attacker identified the credentials of the web server which happens to be the default credentials of the webs server which were not changed. The 401 Unauthorized response leaked the credentials tomcat:s3cret from the server's configuration file tomcat-users.xml. 
 
 4. On Sep 10, 2023 at 18:19:33.485644000, source IP 14.0.0.120 which is the attacker logs into the Tomcat manager using tomcat:s3cret. This maps to MITRE ATT&CK technique T1078 - Valid accounts. This indicates that the attacker was able to log into the Tomcat Manager successfully. The attacker can now make changes or load a malicious .WAR file so that it can make changes in the web server.
 
