@@ -4,11 +4,10 @@
 A suspicious activity was identified on a web server within the company's intranet. 
 The task was to analyze a PCAP file to understand how the Apache Tomcat web server was compromised
 and to the malicious activities that led to the compromise of the Apache Tomcat web server.
-
+- Protocol of interest: HTTP
+- Tool used by attacker: Gobuster, Tomcat Manager
+- Investigation focus: Web server reconnaissance, credential leak, WAR file upload
 - File type: PCAP
-- Protocol of interest: SMB2
-- Tool used by attacker: PsExec
-- Investigation focus: Lateral movement, admin shares, NTLM authentication
 
 ## Tools Used
 - Wireshark
@@ -19,35 +18,49 @@ and to the malicious activities that led to the compromise of the Apache Tomcat 
 1. Opened a PCAP file gotten from cyberdefenders to analyze a an IDS alert that was flagged
 because there was a suspicion activity that was identified on a web server.
 2. Navigated to statistics, then to conversation to identify top talkers and to determine attacker and victim IPs
-3. Filtered the traffic with this ip.addr==14.0.0.120.
-4. Looked at the traffic and found that the protocols that were being used were TCP protocols running on source port; 256 and destination port 51985.
-5. Filtered the traffic with this http and ip.addr == 14.0.0.120
-6. Wrote a structured finding for each event.
+3. Filtered the traffic with this http and ip.addr == 14.0.0.120
+4. Looked at the traffic and found that the protocols that were being used were HTTP protocols.
+5. Wrote a structured finding for each event.
 
 ## Findings
-1. On Oct 11, 2023 at 07:42:08 UTC, source IP 10.0.0.130 initiated an SMB2 connection to destination IP 10.0.0.133 on port 445. PSEXESVC.exe was written to \10.0.0.133\ADMIN$ via a Write Request over SMB2. This maps to MITRE ATT&CK technique T1021.002 - Remote Services: SMB/Windows Admin Shares. This indicates the attacker copied the PsExec service binary onto the victim machine to enable remote code execution.
- ![psexesvc_Write Response packet](screenshots/psexesvc-write-response.png)     ![top-talker](screenshots/top-talker.png)
+1. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 sent HTTP GET requests to destination IP 10.0.0.112 on port 8080. The User-Agent identified the tool as gobuster. The attacker requested GET / HTTP/1.1,GET  /tomcat.css, GET /tomcat.png. This maps to MITRE ATT&CK technique T1595 - Active Scanning. This indicates that the attacker was performing a reconnaissance attack. The attacker wanted to find which part of the webserver was vulnerable and realized that the default page was exposed.
 
-2. On Oct 11, 2023 07:46, source IP 10.0.0.130 Attacker attempted to authenticate using account IEUser on 10.0.0.131 (HR-PC) on port 49703 It resulted in an access denial; STATUS_ACCESS_DENIED - authentication failed This maps to MITRE ATT&CK technique T1021.002 — Remote Services: SMB/Windows Admin Shares. This indicates that, the attacker wanted to compromise the HR-PC after compromising the SALES-PC
-![STATUS_ACCESS_DENIED HR-PC](screenshots/status-access-denied.png)
+2. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 sent HTTP GET requests to destination IP 10.0.0.112 on port 8080. The User-Agent identified the tool as gobuster. The attacker requested /host-manager, /host-manager/html, and /manager. This maps to MITRE ATT&CK technique T1595.003 - Wordlist Scanning. This indicates the attacker used Gobuster to systematically probe the web server for exposed admin panels and directories.
+
+3. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 sent HTTP GET requests to destination IP 10.0.0.112 on port 8080. The User-Agent identified the tool as gobuster. The attacker requested /host-manager/html. This maps to MITRE ATT&CK technique T1589 - Gather Victim Identity Information. This indicates that the attacker identified the credentials of the web server which happens to be the default credentials of the webs server which were not changed. The 401 Unauthorized response leaked the credentials tomcat:s3cret from the server's configuration file tomcat-users.xml. 
+
+4. On Sep 10, 2023 at 18:19:33.485644000, source IP 14.0.0.120 which is the attacker logs into the Tomcat manager using tomcat:s3cret. This maps to MITRE ATT&CK technique T1078 - Valid accounts. This indicates that the attacker was able to log into the Tomcat Manager successfully. The attacker can now make changes or load a malicious .WAR file so that it can make changes in the web server.
+
+5. On Sep 10, 2023 18:22:14.310812000, source IP 14.0.0.120 which is the attacker uploads the malicious WAR file which is JXQOZY.war via the Tomcat Manager. This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. This indicates that the attacker was able to make changes to the webserver and even establish remote connection to it's C2 servers.
+  
+6. On Sep 10, 2023 18:22:23.099410000, source IP 14.0.0.120 which is the attacker accesses the /JXQOZY/ to activate the webshell. This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. This indicates that the attacker has fully established a hidden backdoor in the web server.
+
 ## MITRE ATT&CK Techniques Identified
 | Activity | Technique ID | Technique Name |
 |----------|-------------|----------------|
-| Lateral Movement |T1021.002  | Remote Services: SMB/Windows Admin Shares |
+|Reconnaissance attack |T1595  | Active scanning |
+|brute force attack | T1595.003 | Wordlist scanning |
+| gathering victim's identity | T1589 | Gather Victim Identity Information |
+| webshell | T1505.003 | Webshell |
 | Stolen credentials | T1078| Valid Accounts |
 
 ## Indicators of Compromise (IOCs)
-- Port 256 which is an unusual port for a web traffic.
 - Attacker IP: 14.0.0.120
 - Victim IP: 10.0.0.112
+- Victim hostname: cyberdefenders-virtual-machine
+- Malicious WAR file: JXQOZY.war
+- Webshell path: /JXQOZY/
+- Credentials used: tomcat:s3cret
+- Scanning tool User-Agent: gobuster/3.6
+- Tomcat version exposed: Apache Tomcat/7.0.88
 
 
 ## Conclusion
 
-The attacker first compromised the Sales-PC using the technique of lateral movement. The attacker used PsExec over SMB2 to move laterally and installed PSEXESVC.exe. The attacker copied the PsExec service binary onto the victim machine to enable remote code execution, then tried gaining access to the HR-PC but the authentication failed because of wrong credentials. the attacker was able to gain remote access to the victim's PC using the PsExec tool in windows
+The attacker first performed a reconnaissance attack using the technique of active scanning. The attacker used the gobuster tool for a brute force attack to find exposed panels and directories. The attacker gathers the leaked credentials of the webserver which were not changed. the attacker was able to gain remote access to the webserver and loaded the malicious WAR file ( JXQOZY.war ) to fully establish a backdoor in the webserver. 
 
 
 ## What This Taught Me About SOC Work
-- Seeing PsExec activity running from a SALES-PC rather than an IT admin machine is an indicator that the SALES-PC has been compromised. PsExec should only be run by administrators not end-user workstations. 
-- attackers will normally like to hide their operations using legitimate tools in the operating system. 
-- An IOC must be something that stands out as abnormal. 
+* Seeing too many GET requests from a particular IP address using the gobuster tool is a sign that an attacker is trying to gain access into a system.
+* Misconfiguring a server can be the single point of attack especially when it contains credentials of the web server
+* Seeing unexpected WAR file deployments in the Tomcat Manager should be flagged as suspicious. A randomly named application appearing in the deployed application list is an immediate indicator of compromise. This gives the attacker persistent remote access and potential escalated privileges on the server.
