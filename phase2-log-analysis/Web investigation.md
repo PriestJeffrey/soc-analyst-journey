@@ -4,8 +4,8 @@
 A suspicious activity was identified on a web server within the company's intranet. 
 The task was to analyze a PCAP file to understand the attack vector, assessing the scope of any potential data breach and determing if the attacker gained further access to BookWorld's internal systes
 - Protocol of interest: HTTP
-- Tool used by attacker: Gobuster, Tomcat Manager
-- Investigation focus: Web server reconnaissance, credential leak, WAR file upload
+- Tool used by attacker: Gobuster
+- Investigation focus: Web server reconnaissance, credential leak, php file upload
 - File type: PCAP
 
 ## Tools Used
@@ -22,29 +22,25 @@ because there was a suspicion activity that was identified in the BookWorld's in
 5. Wrote a structured finding for each event.
 
 ## Findings
-1. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 sent HTTP GET requests to destination IP 10.0.0.112 on port 8080. 
-The User-Agent identified the tool as gobuster. The attacker requested GET / HTTP/1.1,GET  /tomcat.css, GET /tomcat.png. 
+1. On Mar 15, 2024 at 11:39 , source IP 1111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
+The User-Agent identified the tool as gobuster. The attacker requested GET / HTTP/1.1, GET /css/style.css HTTP/1.1, GET /favicon.ico HTTP/1.1.  
 This maps to MITRE ATT&CK technique T1595 - Active Scanning. This indicates that the attacker was performing a reconnaissance attack. 
 The attacker wanted to find which part of the webserver was vulnerable and realized that the default page was exposed.
 
-2. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 sent HTTP GET requests to destination IP 10.0.0.112 on port 8080. 
-The User-Agent identified the tool as gobuster. The attacker requested /host-manager, /host-manager/html, and /manager. 
+2. On Mar 15, 2024 at 11:39 , source IP 1111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
+The User-Agent identified the tool gobuster. The attacker requested GET /admin/login.php HTTP/1.1.
 This maps to MITRE ATT&CK technique T1595.003 - Wordlist Scanning. This indicates the attacker used Gobuster to systematically probe the web server for exposed admin panels and directories.
 
-3. On Sep 10, 2023 at 18:19, source IP 14.0.0.120 received a 401 Unauthorized response from the destination IP 10.0.0.112 on port 8080. 
-The User-Agent identified the tool as gobuster. The attacker requested /host-manager/html. This maps to MITRE ATT&CK technique T1589 - Gather Victim Identity Information. 
-This indicates that the attacker identified the credentials of the web server which happens to be the default credentials of the webs server which were not changed. 
-The 401 Unauthorized response leaked the credentials tomcat:s3cret from the server's configuration file tomcat-users.xml. 
+3. On Mar 15, 2024 12:13:04.792571000, source IP 1111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
+The User-Agent identified the tool as gobuster. The attacker gained access to the webserver. This maps to MITRE ATT&CK technique T1589 - Gather Victim Identity Information. 
+This indicates that the attacker identified the credentials of the web server which happens to be the default credentials of the webs server which were not changed.  
 
-4. On Sep 10, 2023 at 18:19:33.485644000, source IP 14.0.0.120 which is the attacker logs into the Tomcat manager using tomcat:s3cret. 
-This maps to MITRE ATT&CK technique T1078 - Valid accounts. This indicates that the attacker was able to log into the Tomcat Manager successfully. 
-The attacker can now make changes or load a malicious .WAR file so that it can make changes in the web server.
+4. Mar 15, 2024 12:13:51.513292000, source IP 1111.224.250.131 which is the attacker changes the default password to "changeme" and changed it again to "admin123". This maps to MITRE ATT&CK technique T1098 - Account manipulation. This indicates that the attacker was able to manipulate the account by changing the password twice
 
-5. On Sep 10, 2023 18:22:14.310812000, source IP 14.0.0.120 which is the attacker uploads the malicious WAR file which is JXQOZY.war via the Tomcat Manager. 
-This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. 
-This indicates that the attacker was able to make changes to the webserver and even establish remote connection to it's C2 servers.
+5. Mar 15, 2024 12:24:18.822970000, source IP 1111.224.250.131 which is the attacker uploads the malicious .php file which is NVri2vhp.php via the admin panel. This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. 
+This indicates that the attacker was able to make changes to the webserver by uploading a php file and even establish remote connection to it's C2 servers.
   
-6. On Sep 10, 2023 18:22:23.099410000, source IP 14.0.0.120 which is the attacker accesses the /JXQOZY/ to activate the webshell. 
+6. On Mar 15, 2024 12:24:28.703432000 , source IP 1111.224.250.131 which is the attacker accesses the /admin/uploads/NVri2vhp.php to activate the webshell. 
 This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. This indicates that the attacker has fully established a hidden backdoor in the web server.
 
 ## MITRE ATT&CK Techniques Identified
@@ -52,19 +48,19 @@ This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web S
 |----------|-------------|----------------|
 |Reconnaissance attack |T1595  | Active scanning |
 |brute force attack | T1595.003 | Wordlist scanning |
-| gathering victim's identity | T1589 | Gather Victim Identity Information |
+|gathering victim's identity | T1589 | Gather Victim Identity Information |
+|change of password | T1098 | Account manipulation |
 | webshell | T1505.003 | Webshell |
 | Stolen credentials | T1078| Valid Accounts |
 
 ## Indicators of Compromise (IOCs)
-- Attacker IP: 14.0.0.120
-- Victim IP: 10.0.0.112
+- Attacker IP: 1111.224.250.131
+- Victim IP: 73.124.22.98
 - Victim hostname: cyberdefenders-virtual-machine
-- Malicious WAR file: JXQOZY.war
-- Webshell path: /JXQOZY/
-- Credentials used: tomcat:s3cret
+- Malicious php file: NVri2vhp.php
+- Webshell path: /admin/uploads/NVri2vhp.php
+- Credentials used: admin:admin, admin:changeme, admin:admin123
 - Scanning tool User-Agent: gobuster/3.6
-- Tomcat version exposed: Apache Tomcat/7.0.88
 
 
 ## Conclusion
@@ -72,12 +68,12 @@ This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web S
 The attacker first performed a reconnaissance attack using the technique of active scanning. 
 The attacker used the gobuster tool for a brute force attack to find exposed panels and directories. 
 The attacker gathers the leaked credentials of the webserver which were not changed. 
-The attacker was able to gain remote access to the webserver and loaded the malicious WAR file ( JXQOZY.war ) to fully establish a backdoor in the webserver. 
+The attacker was able to gain remote access to the webserver and manipulated the account twice and loaded the malicious php file ( NVri2vhp.php ) to fully establish a backdoor in the webserver. 
 
 
 ## What This Taught Me About SOC Work
 * Seeing too many GET requests from a particular IP address using the gobuster tool is a sign that an attacker is trying to gain access into a system.
-* Misconfiguring a server can be the single point of attack especially when it contains credentials of the web server
-* Seeing unexpected WAR file deployments in the Tomcat Manager should be flagged as suspicious.
+* Not changing the default credentials of a webserver is a critical vulnerable attack vector for attackers.
+* Seeing unexpected php file deployments in the webserver should be flagged as suspicious.
 A randomly named application appearing in the deployed application list is an immediate indicator of compromise. 
 This gives the attacker persistent remote access and potential escalated privileges on the server.
