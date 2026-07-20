@@ -2,8 +2,7 @@
 
 ## Scenario
 A suspicious activity was identified on a web server within the company's intranet. 
-The task was to analyze a PCAP file to understand how the Apache Tomcat web server was compromised
-and the malicious activities that led to the compromise of the Apache Tomcat web server.
+The task was to analyze a PCAP file to understand the attack vector, assessing the scope of any potential data breach and determing if the attacker gained further access to BookWorld's internal systes
 - Protocol of interest: HTTP
 - Tool used by attacker: Gobuster, Tomcat Manager
 - Investigation focus: Web server reconnaissance, credential leak, WAR file upload
@@ -16,11 +15,10 @@ and the malicious activities that led to the compromise of the Apache Tomcat web
 
 ## Investigation Steps
 1. Opened a PCAP file gotten from cyberdefenders to analyze a an IDS alert that was flagged
-because there was a suspicion activity that was identified on a web server.
-2. Navigated to statistics, then to conversation to identify top talkers and to determine attacker and victim IPs
-3. Filtered the traffic with this http and ip.addr == 14.0.0.120
-4. Looked at the traffic and found that the protocols that were being used were HTTP protocols GET /host-manager/html HTTP/1.1
-User-Agent: gobuster/3.6
+because there was a suspicion activity that was identified in the BookWorld's internal systems.
+2. Navigated to statistics, then to conversation to identify top talkers and to determine attacker ( 111.224.250.131 ) and victim ( 73.124.22.98 ) IPs with 88,484 packets.
+3. Filtered the traffic with this http and ip.addr == 111.224.250.131.
+4. Looked at the traffic and found that the protocols that were being used were HTTP protocols.
 5. Wrote a structured finding for each event.
 
 ## Findings
