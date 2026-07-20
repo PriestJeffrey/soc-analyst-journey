@@ -22,25 +22,25 @@ because there was a suspicion activity that was identified in the BookWorld's in
 5. Wrote a structured finding for each event.
 
 ## Findings
-1. On Mar 15, 2024 at 11:39 , source IP 1111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
+1. On Mar 15, 2024 at 11:39 , source IP 111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
 The User-Agent identified the tool as gobuster. The attacker requested GET / HTTP/1.1, GET /css/style.css HTTP/1.1, GET /favicon.ico HTTP/1.1.  
 This maps to MITRE ATT&CK technique T1595 - Active Scanning. This indicates that the attacker was performing a reconnaissance attack. 
 The attacker wanted to find which part of the webserver was vulnerable and realized that the default page was exposed.
 
-2. On Mar 15, 2024 at 11:39 , source IP 1111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
+2. On Mar 15, 2024 at 11:39 , source IP 111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
 The User-Agent identified the tool gobuster. The attacker requested GET /admin/login.php HTTP/1.1.
 This maps to MITRE ATT&CK technique T1595.003 - Wordlist Scanning. This indicates the attacker used Gobuster to systematically probe the web server for exposed admin panels and directories.
 
-3. On Mar 15, 2024 12:13:04.792571000, source IP 1111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
-The User-Agent identified the tool as gobuster. The attacker gained access to the webserver. This maps to MITRE ATT&CK technique T1589 - Gather Victim Identity Information. 
+3. On Mar 15, 2024 12:13:04.792571000, source IP 111.224.250.131 sent HTTP GET requests to destination IP 73.124.22.98 on port 8080. 
+The User-Agent identified the tool as gobuster. The attacker gained access to the webserve by brute force attack. This maps to MITRE ATT&CK technique T1110 - Brute Force. 
 This indicates that the attacker identified the credentials of the web server which happens to be the default credentials of the webs server which were not changed.  
 
-4. Mar 15, 2024 12:13:51.513292000, source IP 1111.224.250.131 which is the attacker changes the default password to "changeme" and changed it again to "admin123". This maps to MITRE ATT&CK technique T1098 - Account manipulation. This indicates that the attacker was able to manipulate the account by changing the password twice
+4. Mar 15, 2024 12:13:51.513292000, source IP 111.224.250.131 which is the attacker changes the default password to "changeme" and changed it again to "admin123". This maps to MITRE ATT&CK technique T1098 - Account manipulation. This indicates that the attacker was able to manipulate the account by changing the password twice
 
-5. Mar 15, 2024 12:24:18.822970000, source IP 1111.224.250.131 which is the attacker uploads the malicious .php file which is NVri2vhp.php via the admin panel. This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. 
+5. Mar 15, 2024 12:24:18.822970000, source IP 111.224.250.131 which is the attacker uploads the malicious .php file which is NVri2vhp.php via the admin panel. This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. 
 This indicates that the attacker was able to make changes to the webserver by uploading a php file and even establish remote connection to it's C2 servers.
   
-6. On Mar 15, 2024 12:24:28.703432000 , source IP 1111.224.250.131 which is the attacker accesses the /admin/uploads/NVri2vhp.php to activate the webshell. 
+6. On Mar 15, 2024 12:24:28.703432000 , source IP 111.224.250.131 which is the attacker accesses the /admin/uploads/NVri2vhp.php to activate the webshell. 
 This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web Shell. This indicates that the attacker has fully established a hidden backdoor in the web server.
 
 ## MITRE ATT&CK Techniques Identified
@@ -48,15 +48,14 @@ This maps to MITRE ATT&CK technique T1505.003 - Server Software Component: Web S
 |----------|-------------|----------------|
 |Reconnaissance attack |T1595  | Active scanning |
 |brute force attack | T1595.003 | Wordlist scanning |
-|gathering victim's identity | T1589 | Gather Victim Identity Information |
+|brute force to gain access | T1110 | Brute Force |
 |change of password | T1098 | Account manipulation |
 | webshell | T1505.003 | Webshell |
 | Stolen credentials | T1078| Valid Accounts |
 
 ## Indicators of Compromise (IOCs)
-- Attacker IP: 1111.224.250.131
+- Attacker IP: 111.224.250.131
 - Victim IP: 73.124.22.98
-- Victim hostname: cyberdefenders-virtual-machine
 - Malicious php file: NVri2vhp.php
 - Webshell path: /admin/uploads/NVri2vhp.php
 - Credentials used: admin:admin, admin:changeme, admin:admin123
