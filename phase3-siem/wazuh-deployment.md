@@ -54,16 +54,23 @@ I made some changes in the agent configuration because wazuh was not receiving l
 ![sysmon](screenshots/sysmon-alerts.png)
 
 ## Alert Triage — Initial Observations
-Document the first alerts you saw and your triage decision for each.
+1. T1087 — A net.exe account discovery command was initiated
+   The net user command was ran and that was being detected automatically
+2. T1059.001 — Powershell executed script from suspicious location
+   PowerShell activity being flagged
+3. T1105 — Executable file dropped in folder commonly used by malware - Level 15
+   The Wazuh agent installation dropped executable files onto your machine.
+   That's what triggered the Level 15 alert. It's a false positive; a legitimate action that looks suspicious to the detection rule because it matches the pattern of malware behavior.
+
 
 | Alert | MITRE Technique | Severity | Triage Decision | Reasoning |
 |-------|----------------|----------|----------------|-----------|
-| | | | | |
+| Telegram.exe accessing Explorer process | T1055 | 12  | false positive| Process Injection fires when one process accesses another process's memory. That's a technique malware uses to hide inside legitimate processes. |
+| OMEN Command Center accessing Explorer process | T1055 | 12 | false positive | Process Injection fires when one process accesses another process's memory. That's a technique malware uses to hide inside legitimate processes |
+| Executable file dropped in malware folder | T1105 | 15 | False positive | Wazuh agent installation dropped legitimate executables triggering the rule |
 
 ## What This Taught Me About SOC Work
-- 
-- 
-- 
+- SOC analysts need to tune detection rules reducing false positives so real threats don't get buried in noise.
+- A high severity alert does not automatically mean a real threat. Context determines everything.
+- Wazuh out of the box doesn't see everything. It needs Sysmon to get deep process visibility.
 
-## Next Steps
-What you plan to do next with this SIEM setup.
