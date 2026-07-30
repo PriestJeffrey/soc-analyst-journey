@@ -45,10 +45,13 @@ I made some changes in the agent configuration because wazuh was not receiving l
 ![Dashboard](screenshots/dashboard.png)
 
 ### Live Alerts
-![Alerts](screenshots/alerts.png)
+![alerts](screenshots/alerts.png)
 
 ### Agent Connected
-![Agent](screenshots/agent.png)
+![Agent](screenshots/agents.png)
+
+### Sysmon alerts
+![sysmon](screenshots/sysmon-alerts.png)
 
 ## Alert Triage — Initial Observations
 Document the first alerts you saw and your triage decision for each.
