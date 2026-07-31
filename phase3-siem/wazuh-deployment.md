@@ -28,7 +28,7 @@ for this lab, we will use the single node.
 6. Navigate into the single-node folder: cd single-node
 7. Generate the SSL certificates by running this command; docker compose -f generate-indexer-certs.yml run --rm generator
 8. Wazuh will pull large Docker images: docker compose up -d
-9. verify everything is running properly: docker ps
+9. verify everything is running properly: docker ps which is Process Status and is used to list all currently running Docker containers
 
 ## Agent Configuration
 I made some changes in the agent configuration because wazuh was not receiving logs from sysmon. 
@@ -74,3 +74,7 @@ I made some changes in the agent configuration because wazuh was not receiving l
 - A high severity alert does not automatically mean a real threat. Context determines everything.
 - Wazuh out of the box doesn't see everything. It needs Sysmon to get deep process visibility.
 
+## Next Steps
+- Configure custom detection rules in Wazuh to reduce false positives from OMEN and Telegram
+- Connect a second endpoint as a Wazuh agent to simulate a multi-machine environment
+- Investigate a real alert end-to-end using Wazuh — from alert to triage to incident report
