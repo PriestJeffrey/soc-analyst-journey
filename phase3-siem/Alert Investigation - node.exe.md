@@ -20,7 +20,7 @@ Wazuh detected node.exe being spawned by cmd.exe from a user directory. This pat
 
 ### VirusTotal Hash Check
 - Hash: SHA256=9A4EB5F1C29C6A2E93852EAD46B999E284A6A5CA8BAB4D4E241D587D025A52DE
-- Result: 0/70 vendors flagged as malicious — Clean
+- Result: 0/70 vendors flagged as malicious; Clean
 - Link: https://www.virustotal.com/gui/file/9A4EB5F1C29C6A2E93852EAD46B999E284A6A5CA8BAB4D4E241D587D025A52DE
 
 ### Triage Decision
