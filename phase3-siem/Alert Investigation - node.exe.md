@@ -20,11 +20,11 @@ Wazuh detected node.exe being spawned by cmd.exe from a user directory. This pat
 
 ### VirusTotal Hash Check
 - Hash: SHA256=9A4EB5F1C29C6A2E93852EAD46B999E284A6A5CA8BAB4D4E241D587D025A52DE
-- Result: Result: 0/70 vendors flagged as malicious - Clean
-- Link: [https://virustotal.com]https://www.virustotal.com/gui/file/9A4EB5F1C29C6A2E93852EAD46B999E284A6A5CA8BAB4D4E241D587D025A52DE
+- Result: 0/70 vendors flagged as malicious — Clean
+- Link: https://www.virustotal.com/gui/file/9A4EB5F1C29C6A2E93852EAD46B999E284A6A5CA8BAB4D4E241D587D025A52DE
 
 ### Triage Decision
 IntegrityLevel was Medium (not elevated), parent-child was cmd.exe → node.exe from C:\Users\rhema\Desktop\socials\ (expected for a local Node project), and the SHA256 hash returned 0/70 malicious detections on VirusTotal. Combined, this is a false positive, not malicious command execution.
 
 ### What This Taught Me
-- A soc analyst must go beyond context reasoning. A soc analyst must go further and check if files are malicious or not. 
+- Alert context alone is not enough. A complete triage decision requires process integrity, parent-child relationship, path legitimacy, and an independent hash verdict. 
