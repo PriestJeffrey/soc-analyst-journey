@@ -30,6 +30,10 @@ Wazuh detected node.exe being spawned by cmd.exe from a user directory. This pat
 ### What This Taught Me
 - Alert context alone is not enough. A complete triage decision requires process integrity, parent-child relationship, path legitimacy, and an independent hash verdict.
 
+## False Positive Tuning Notes
+
+### Why the Rule Fired
+Wazuh matched the pattern cmd.exe → node.exe from a user directory, mapped to T1059.003 (Windows Command Shell). That pattern is commonly abused, so the rule alerted.
 
 ### Why This Was a False Positive
 IntegrityLevel was Medium, parent-child was cmd.exe → node.exe from C:\Users\rhema\Desktop\socials\ (expected Node project path), and VirusTotal returned 0/70 malicious. Combined evidence supports false positive.
