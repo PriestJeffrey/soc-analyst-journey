@@ -28,3 +28,8 @@ SOC Analyst.
 ## Let's Connect
 Follow along as we grow in this journey together. 
 Don't hesitate to share your ideas too.
+
+## Phase 3 — SIEM (Wazuh)
+
+- [Wazuh Deployment](phase3-siem/wazuh-deployment.md)
+- [Alert Investigation — node.exe (False Positive Triage)](phase3-siem/Alert%20Investigation%20-%20node.exe.md)
