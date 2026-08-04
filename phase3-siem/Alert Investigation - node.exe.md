@@ -31,30 +31,21 @@ Wazuh detected node.exe being spawned by cmd.exe from a user directory. This pat
 - Alert context alone is not enough. A complete triage decision requires process integrity, parent-child relationship, path legitimacy, and an independent hash verdict.
 
 
-## False Positive Tuning Notes
-
-### Why the Rule Fired
-The reason there was an alert of a false positive was because there was a pattern that matched the detection. the pattern was, there was a process relationship, where cmd.exe spawned node.exe which matches T1059.003 — Windows Command Shell execution, which is commonly used by attackers to run scripts via command prompt.
-
 ### Why This Was a False Positive
-Medium IntegrityLevel only shows the process was not elevated. It is not enough by itself because malware often runs as a normal user. You still need:
-
-parent-child relationship
-path legitimacy (expected vs suspicious)
-independent hash verdict (VirusTotal)
+IntegrityLevel was Medium, parent-child was cmd.exe → node.exe from C:\Users\rhema\Desktop\socials\ (expected Node project path), and VirusTotal returned 0/70 malicious. Combined evidence supports false positive.
 
 ### Tuning Idea
-One concrete change to reduce this noise **without** hiding real malicious `cmd.exe` abuse.
+One concrete change to reduce this noise without hiding real malicious cmd.exe abuse.
 
 | Item | Detail |
 |------|--------|
-| Tuning type | Exclusion / allowlist / rule condition / severity adjustment |
-| Condition | Exact condition you would add (path, process, parent, user, etc.) |
-| Risk if mistuned | What real attack could slip through if this is too broad |
-| Safer alternative | Narrower version of the same idea |
+| Tuning type | Exclusion / allowlist |
+| Condition | Allow only when process=node.exe AND parent=cmd.exe AND currentDirectory starts with C:\Users\rhema\Desktop\socials\ |
+| Risk if mistuned | If broadened to all node.exe, attacker can rename malware to node.exe (or abuse Node) and bypass the alert |
+| Safer alternative | Keep exclusion scoped to the known project path; do not exclude node.exe globally |
 
 ### What I Would Not Do
-One bad tuning choice and why (example: blanket allow all `node.exe`).
+I would not allowlist all cmd.exe activity, because attackers commonly use cmd.exe to launch tools and scripts.
 
 
 
