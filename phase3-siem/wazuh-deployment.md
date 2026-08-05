@@ -42,7 +42,7 @@ I made some changes in the agent configuration because wazuh was not receiving l
 
 ## Screenshots
 ### Dashboard Overview
-![Dashboard](screenshots/dashboard.png)
+![wazuh-dashboard-overview](screenshots/wazuh-dashboard-overview.png)
 
 ### Live Alerts
 ![alerts](screenshots/alerts.png)
