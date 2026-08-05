@@ -48,7 +48,7 @@ I made some changes in the agent configuration because wazuh was not receiving l
 ![alerts](screenshots/alerts.png)
 
 ### Agent Connected
-![Agent](screenshots/agents.png)
+![Agents](screenshots/Agents.png)
 
 ### Sysmon alerts
 ![sysmon](screenshots/sysmon-alerts.png)
