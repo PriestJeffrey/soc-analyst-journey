@@ -17,7 +17,7 @@ Wazuh/Sysmon Event ID 10 showed Cursor.exe accessing Explorer.EXE. Rule 92910 ma
 ### Investigation Steps
 1. Found out the source process ( C:\\Users\\rhema\\AppData\\Local\\Programs\\cursor\\Cursor.exe )  and what the target process ( C:\\windows\\Explorer.EXE ) were.
 2. Looked for the full path cursor.exe was running from to see if it looked suspicious C:\\Users\\rhema\\AppData\\Local\\Programs\\cursor\\Cursor.exe but it didn't look suspicious.
-3. 3. Checked grantedAccess (`0x40`) — handle/dup permission, not classic memory-write injection rights.
+3. Checked grantedAccess (`0x40`) — handle/dup permission, not classic memory-write injection rights.
 4. Reviewed call stack — included `shcore.dll` and `explorerframe.dll` (Windows shell/UI).
 5. Noted rule.firedtimes = 74 (noisy recurring behavior).
 6. Hashed Cursor.exe and checked VirusTotal.
