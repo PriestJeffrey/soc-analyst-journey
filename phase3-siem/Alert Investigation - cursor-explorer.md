@@ -1,4 +1,4 @@
-## Alert Investigation — Cursor.exe accessing Explorer.EXE
+## Alert Investigation - Cursor.exe accessing Explorer.EXE
 
 ### Alert Details
 | Field | Value |
