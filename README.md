@@ -34,3 +34,4 @@ Don't hesitate to share your ideas too.
 - [Wazuh Deployment](phase3-siem/wazuh-deployment.md)
 - [Alert Investigation — node.exe (False Positive Triage)](phase3-siem/Alert%20Investigation%20-%20node.exe.md)
 - [Alert Investigation — Cursor.exe → Explorer (T1055 FP)](phase3-siem/Alert%20Investigation%20-%20cursor-explorer.md)
+- [Alert Investigation — MoUsoCoreWorker.exe loaded taskschd.dll (T1053.005 FP)](phase3-siem/Alert%20Investigation%20-%20mousocoreworker-taskschd.md)
