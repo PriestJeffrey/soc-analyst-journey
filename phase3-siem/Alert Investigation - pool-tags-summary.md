@@ -1,4 +1,4 @@
-## Alert Investigation - svchost.exe 
+## Alert Investigation — pool_tags_summary.json.dup (Sysmon EID11)
 ### Alert Details
 | Field | Value |
 |-------|-------|
@@ -15,7 +15,7 @@ Wazuh Event showed Scripting file created under Windows Temp or User folder. Rul
 
 ### Investigation Steps
 1. Found out the image "C:\\\\windows\\\\system32\\\\svchost.exe"  and what the target filename "C:\\\\Windows\\\\Temp\\\\pool_tags_summary.json.dup" were.
-2. Looked for the full path to see where the JSON data/summary file was created and the time it was created to see if it was malicious C:\\Windows\\Temp\\pool_tags_summary.json.dup CreationUtcTime: 2026-08-13 21:32:34.846 User: NT AUTHORITY\\SYSTEM\""
+2. Checked target path C:\Windows\Temp\pool_tags_summary.json.dup, CreationUtcTime 2026-08-13 21:32:34.846, User NT AUTHORITY\SYSTEM.
 3. Noted rule.firedtimes = 10 
 4. Hashed svchost.exe and checked VirusTotal.
 
@@ -59,7 +59,7 @@ both paths "C:\\\\windows\\\\system32\\\\svchost.exe", "C:\\\\Windows\\\\Temp\\\
 | Item | Detail |
 |------|--------|
 | Tuning type | Exclusion / allowlist |
-| Condition |	Exclude when Image is the path C:\windows\system32\svchost.exe AND Image = C:\Windows\System32\svchost.exe AND TargetFilename = C:\Windows\Temp\pool_tags_summary.json.dup (or matches *\pool_tags_summary.json*) |
+| Condition |	Exclude when Image = C:\Windows\System32\svchost.exe AND TargetFilename = C:\Windows\Temp\pool_tags_summary.json.dup (or matches *\pool_tags_summary.json*) |
 | Risk if mistuned | If broadened to all Temp creates by svchost, real malicious drops from a compromised/spoofed host process could be missed |
 | Safer alternative |Scope only to signed/known svchost.exe path do not exclude all pool_tags |
 
