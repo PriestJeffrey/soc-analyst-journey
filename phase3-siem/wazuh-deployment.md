@@ -78,6 +78,7 @@ I made some changes in the agent configuration because wazuh was not receiving l
 - [Cursor → Explorer T1055 FP triage](Alert%20Investigation%20-%20cursor-explorer.md)
 - [MoUsoCoreWorker.exe loaded taskschd.dll (T1053.005 FP)](Alert%20Investigation%20-%20mousocoreworker-taskschd.md)
 - [pool_tags_summary.json.dup (Sysmon EID11)](Alert%20Investigation%20-%20pool-tags-summary.md)
+- [Wazuh Detection Tuning — Cursor.exe / Rule 92910](wazuh%20-%20detection-tuning.md)
 
   ## Alert Summary
 | Alert | MITRE Technique | Severity | Triage Decision | Reasoning |
