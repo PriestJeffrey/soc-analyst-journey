@@ -36,4 +36,4 @@ Don't hesitate to share your ideas too.
 - [Alert Investigation — Cursor.exe → Explorer (T1055 FP)](phase3-siem/Alert%20Investigation%20-%20cursor-explorer.md)
 - [Alert Investigation — MoUsoCoreWorker.exe loaded taskschd.dll (T1053.005 FP)](phase3-siem/Alert%20Investigation%20-%20mousocoreworker-taskschd.md)
 - [Alert Investigation — pool_tags_summary.json.dup (Sysmon EID11)](phase3-siem/Alert%20Investigation%20-%20pool-tags-summary.md)
-- [Wazuh detection tuning](phase3-siem/wazuh%20-%20detection-tuning.md)
+- [Wazuh detection tuning](phase3-siem/wazuh-detection-tuning.md)
