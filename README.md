@@ -29,7 +29,7 @@ SOC Analyst.
 Follow along as we grow in this journey together. 
 Don't hesitate to share your ideas too.
 
-## Phase 3 — SIEM (Wazuh)
+## Phase 3 - SIEM (Wazuh)
 
 - [Wazuh Deployment](phase3-siem/wazuh-deployment.md)
 - [Alert Investigation — node.exe (False Positive Triage)](phase3-siem/Alert%20Investigation%20-%20node.exe.md)
@@ -37,3 +37,4 @@ Don't hesitate to share your ideas too.
 - [Alert Investigation — MoUsoCoreWorker.exe loaded taskschd.dll (T1053.005 FP)](phase3-siem/Alert%20Investigation%20-%20mousocoreworker-taskschd.md)
 - [Alert Investigation — pool_tags_summary.json.dup (Sysmon EID11)](phase3-siem/Alert%20Investigation%20-%20pool-tags-summary.md)
 - [Wazuh detection tuning](phase3-siem/wazuh-detection-tuning.md)
+- [Wazuh Custom Detection - cmd.exe spawned whoami.exe (T1033)](phase3-siem/wazuh-custom-detection-whoami.md)
