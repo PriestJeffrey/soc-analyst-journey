@@ -94,5 +94,4 @@ I made some changes in the agent configuration because wazuh was not receiving l
 - A high severity alert does not automatically mean a real threat. Context determines everything.
 - Wazuh out of the box doesn't see everything. It needs Sysmon to get deep process visibility.
 
-## Next Steps
-- Persist `local_rules.xml` (rules 100002 and 100003) so a Docker recreate does not wipe them
+
