@@ -80,6 +80,7 @@ I made some changes in the agent configuration because wazuh was not receiving l
 - [pool_tags_summary.json.dup (Sysmon EID11)](Alert%20Investigation%20-%20pool-tags-summary.md)
 - [Wazuh Detection Tuning - Cursor.exe / Rule 92910](wazuh-detection-tuning.md)
 - [Wazuh Custom Detection - cmd.exe spawned whoami.exe (T1033)](wazuh-custom-detection-whoami.md)
+- [local_rules.xml](local_rules.xml)
 
   ## Alert Summary
 | Alert | MITRE Technique | Severity | Triage Decision | Reasoning |
