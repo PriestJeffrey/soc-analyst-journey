@@ -38,3 +38,4 @@ Don't hesitate to share your ideas too.
 - [Alert Investigation — pool_tags_summary.json.dup (Sysmon EID11)](phase3-siem/Alert%20Investigation%20-%20pool-tags-summary.md)
 - [Wazuh detection tuning](phase3-siem/wazuh-detection-tuning.md)
 - [Wazuh Custom Detection - cmd.exe spawned whoami.exe (T1033)](phase3-siem/wazuh-custom-detection-whoami.md)
+- [local_rules.xml](phase3-siem/%20local_%20rules.xml)
