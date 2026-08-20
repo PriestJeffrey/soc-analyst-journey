@@ -1,4 +1,4 @@
-## Alert Investigation — MoUsoCoreWorker.exe loaded taskschd.dll
+## Alert Investigation - MoUsoCoreWorker.exe loaded taskschd.dll
 
 ### Alert Details
 | Field | Value |
