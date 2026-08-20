@@ -1,4 +1,4 @@
-## Wazuh Custom Detection — cmd.exe spawned whoami.exe (T1033)
+## Wazuh Custom Detection - cmd.exe spawned whoami.exe (T1033)
 
 ### Objective
 Write a custom Wazuh rule that alerts on Account Discovery (T1033): cmd.exe spawning whoami.exe.
