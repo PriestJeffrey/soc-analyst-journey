@@ -42,3 +42,9 @@ Write a custom Wazuh rule that alerts on Account Discovery (T1033): cmd.exe spaw
 
 ### Persistence Note
 Rule lives in container local_rules.xml. Recreating Docker may wipe it.
+
+### How To Restore After Docker Recreate
+From Windows PowerShell (repo `phase3-siem` folder, or use full paths):
+
+docker cp local_rules.xml single-node-wazuh.manager-1:/var/ossec/etc/rules/local_rules.xml
+docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/wazuh-control reload
