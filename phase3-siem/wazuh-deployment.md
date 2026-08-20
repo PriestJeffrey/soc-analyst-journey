@@ -94,4 +94,4 @@ I made some changes in the agent configuration because wazuh was not receiving l
 - Wazuh out of the box doesn't see everything. It needs Sysmon to get deep process visibility.
 
 ## Next Steps
-- Add one custom Wazuh detection rule **or** connect a second agent
+- Persist `local_rules.xml` (rules 100002 and 100003) so a Docker recreate does not wipe them
