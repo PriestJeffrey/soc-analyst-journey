@@ -1,4 +1,4 @@
-# Wazuh SIEM Deployment — SOC Analyst Lab
+# Wazuh SIEM Deployment - SOC Analyst Lab
 
 ## Objective
 I deployed Wazuh, connected a Windows agent, ingested Sysmon logs, and investigated alerts.
@@ -79,6 +79,7 @@ I made some changes in the agent configuration because wazuh was not receiving l
 - [MoUsoCoreWorker.exe loaded taskschd.dll (T1053.005 FP)](Alert%20Investigation%20-%20mousocoreworker-taskschd.md)
 - [pool_tags_summary.json.dup (Sysmon EID11)](Alert%20Investigation%20-%20pool-tags-summary.md)
 - [Wazuh Detection Tuning - Cursor.exe / Rule 92910](wazuh-detection-tuning.md)
+- [Wazuh Custom Detection - cmd.exe spawned whoami.exe (T1033)](wazuh-custom-detection-whoami.md)
 
   ## Alert Summary
 | Alert | MITRE Technique | Severity | Triage Decision | Reasoning |
