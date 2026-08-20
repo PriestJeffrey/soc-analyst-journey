@@ -1,4 +1,4 @@
-## Alert Investigation — pool_tags_summary.json.dup (Sysmon EID11)
+## Alert Investigation - pool_tags_summary.json.dup (Sysmon EID11)
 ### Alert Details
 | Field | Value |
 |-------|-------|
