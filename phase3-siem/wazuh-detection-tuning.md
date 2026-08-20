@@ -1,4 +1,4 @@
-## Wazuh Detection Tuning — Cursor.exe / Rule 92910
+## Wazuh Detection Tuning - Cursor.exe / Rule 92910
 
 ### Objective
 Reduce false positive noise from legitimate Cursor → Explorer process access (T1055 / rule 92910) without blinding real Explorer access alerts.
