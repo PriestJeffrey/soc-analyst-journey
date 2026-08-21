@@ -1,7 +1,7 @@
 ## Wazuh Detection Drills - Tune + Custom Rules
 
 ### Goal
-Practice one exclusion (level 0) and one detection (level 5) without relying on mentor-written XML.
+Practice two exclusion (level 0) and two detection (level 5) without relying on mentor-written XML.
 
 ### Rules In This Lab
 | ID | Type | Parent SID | Pattern | Result |
@@ -27,8 +27,8 @@ Practice one exclusion (level 0) and one detection (level 5) without relying on 
 
 ### Drill 3 — Office SDXHelper Tune
 - the .js has string will change when copilot updates the next time, the exclusion dies and 92200 floods again.
-- id=10002 is already in cursor's exclusion and if it is reused, it'll overwrite the cursor tune.
-- What still fires on rule.id:92200 is svchost.exe and it was folded into 100006 because the parent rule is the same ( 92200 ) but the process and file (same family as pool_tags: SYSTEM writing a *_summary.json.dup in Temp).
+- 100002 is already in cursor's exclusion and if it is reused, it'll overwrite the cursor tune.
+- After 100006, 92200 still fired for svchost.exe writing perftrack_summary.json.dup in C:\Windows\Temp. I did not add that to 100006 because it is a different process and file. Same parent rule ≠ same exclusion.
 
 ### Drill 4 — tasklist Detection
 - Event ID 1 vs Event ID 7
@@ -39,6 +39,7 @@ Event ID 1 ( cmd.exe started tasklist.exe ) vs Event ID 7 ( tasklist.exe loaded 
 - A single tune may not be able to fine tune wazuh to reduce false positives. You may need more than 1 tuning rule.
 - After editing local_rules.xml, reload the Wazuh manager or the new rule will not run.
 
+### Rule XML
 ```xml
 <rule id="100004" level="0">
   <if_sid>92910</if_sid>
