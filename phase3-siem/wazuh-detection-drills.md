@@ -1,7 +1,7 @@
 ## Wazuh Detection Drills - Tune + Custom Rules
 
 ### Goal
-Practice two exclusion (level 0) and two detection (level 5) without relying on mentor-written XML.
+Practice two exclusions (level 0) and two detection (level 5) without relying on mentor-written XML.
 
 ### Rules In This Lab
 | ID | Type | Parent SID | Pattern | Result |
@@ -26,7 +26,7 @@ Practice two exclusion (level 0) and two detection (level 5) without relying on 
 - Evidence (2026-08-21T12:08:09.765Z, rule 100005)
 
 ### Drill 3 — Office SDXHelper Tune
-- the .js has string will change when copilot updates the next time, the exclusion dies and 92200 floods again.
+- the .js hash string will change when copilot updates the next time, the exclusion dies and 92200 floods again.
 - 100002 is already in cursor's exclusion and if it is reused, it'll overwrite the cursor tune.
 - After 100006, 92200 still fired for svchost.exe writing perftrack_summary.json.dup in C:\Windows\Temp. I did not add that to 100006 because it is a different process and file. Same parent rule ≠ same exclusion.
 
