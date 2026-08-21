@@ -39,3 +39,5 @@ Don't hesitate to share your ideas too.
 - [Wazuh detection tuning](phase3-siem/wazuh-detection-tuning.md)
 - [Wazuh Custom Detection - cmd.exe spawned whoami.exe (T1033)](phase3-siem/wazuh-custom-detection-whoami.md)
 - [local_rules.xml](phase3-siem/local_rules.xml)
+- [Wazuh Detection Drills](phase3-siem/wazuh-detection-drills.md)
+- [Wazuh Manager Commands](phase3-siem/wazuh-commands.md)
