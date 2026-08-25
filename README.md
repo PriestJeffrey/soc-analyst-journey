@@ -9,6 +9,7 @@ experience in IT support and infrastructure.
 - Cisco CCNA Introduction to Networks
 - Microsoft Azure Fundamentals AZ-900
 - Google Project Management Certificate
+- Intro to Splunk (eLearning)
 
 ## About This Repository
 This repository documents my hands-on journey into SOC 
