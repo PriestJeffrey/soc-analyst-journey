@@ -42,3 +42,76 @@ Once a search job is executed, users can interact with the returned events and f
 2. Field Selection: By default, Splunk displays host, source, and source type; however, users can access all extracted fields via the info button.
 3. Search Refinement: Clicking highlighted text within an event allows a user to add that term to the current search, exclude it, or launch a new search in a separate window.
 4. Job Management: Users can save searches as knowledge objects or export data in raw, CSV, XML, or JSON formats. While standard search jobs remain active for 10 minutes, shared jobs remain active for seven days and are readable by all users.
+
+## Knowledge Objects
+Splunk utilises knowledge objects to assist users in discovering and analysing data through five categories: data interpretation, classification, enrichment, normalisation, and data models.
+
+### Types of Objects:
+
+1. Fields: Manually extracted or automatically derived from source types.
+2. Calculated Fields: Added at search time based on existing field values.
+3. Event Types: Categorise events using search terms.
+4. Transactions: Groups of related events spanning a period of time.
+5. Lookups: Add external fields and values to indexed data.
+6. Workflow Actions: Create links to external resources or narrow searches.
+7. Tags: Descriptive labels for key-value pairs.
+8. Field Aliases: Normalise data across multiple sources.
+9. Data Models: Hierarchically structured datasets consisting of events, searches, or transactions.
+
+- Knowledge Managers: Responsible for overseeing object creation, implementing naming conventions, and maintaining the toolbox efficiency.
+
+### Reports and Visualisations
+Users can save searches as Reports to facilitate easy sharing and future reuse.
+
+- Report Management: Reports can be shared via app permissions or set to run as the owner or the user. Running a report as the owner may expose sensitive data that the user might not otherwise see.
+- Scheduling: Reports can be scheduled at intervals (hourly, daily, weekly, etc.) or via cron schedules to reduce environment strain. Scheduling overrides "run as" settings and removes the time range picker.
+- Trigger Actions: Enhanced functionality includes delivering results via email, webhooks, or custom scripts.
+- Visualisations: Statistical values can be converted into various formats such as bar charts, column charts, pie charts, line charts, or maps using the geostats command for geographic context.
+
+### Dashboard Frameworks
+Dashboards aggregate multiple panels to tell a comprehensive data story and can be built using two distinct frameworks.
+
+- Classic Dashboards: Utilises XML for configuration and allows for drill-down behaviour where clicking a visualisation links to a search, another dashboard, or a custom URL.
+- Dashboard Studio: Offers two layout modes:
+- Grid Layout: Provides automatic alignment for quick organisation of panels into rows.
+- Absolute Layout: Offers pixel-perfect placement with a highly customisable canvas including background images (up to 16 megabytes), shapes, and icons.
+
+### Search Components
+The Splunk search language is comprised of five core elements:
+
+- Search terms: The foundational basis of any query.
+- Commands: Instructions that dictate actions such as creating charts or computing statistics.
+- Functions: Specific operations used to evaluate or format results.
+- Arguments: Variables applied to functions.
+- Clauses: Definitions used to group or define results.
+
+A pipe symbol is utilised to pass current results from one component to the next within the search pipeline. For example, a stats command can use a function like count with an argument like usage, while the as clause defines the resulting field name.
+
+### Query Optimization
+Efficiency in Splunk is heavily dependent on how filters are applied throughout the pipeline.
+
+- Time Filtering: Using time to limit returned events is the most efficient method to increase speed.
+- Early Filtering: Users should apply filtering commands as early as possible; filtering before the first pipe is preferred to reduce the volume of data processed in subsequent steps.
+- Field Usage: The default fields index, source, host, and source type are highly efficient because they are extracted at index time.
+- Search Precision: It is more effective to search for specific strings like "failed password" rather than broad terms like "password". Inclusion is generally superior to exclusion, and using or or in operators is preferred over wildcards.
+
+### Syntax Rules
+Understanding case sensitivity is critical for accurate results. While command names, clauses, and functions are not case sensitive, specific values referenced by a command, such as those used in a replace command must be exact matches, including case.
+
+The search command can be used mid-pipeline to further filter results, such as identifying employees who have violated web policy more than once by referencing a field created earlier in the process.
+
+### Search Syntax
+Wildcards and Case Sensitivity
+
+- Using an asterisk as a wildcard (e.g., fail*) allows for broader searches that capture variations such as "fail", "failure", and "failed".
+Search terms in Splunk are not case sensitive, ensuring all matching results are returned regardless of capitalisation.
+Boolean Operations
+
+- Uppercase Booleans including AND, OR, and NOT can be used to combine or exclude multiple search terms.
+The default order of evaluation follows a specific hierarchy: NOT clauses are processed first, followed by OR, and finally AND.
+Parentheses can be utilised to override the default evaluation order by forcing specific terms to be processed first.
+Advanced Formatting
+Phrase Searching
+
+- Exact phrases must be enclosed in quotes to ensure precise matching.
+A backslash character can be used to escape quotes when searching for results that contain literal quotation marks.
