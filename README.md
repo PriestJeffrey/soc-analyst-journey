@@ -41,3 +41,5 @@ Don't hesitate to share your ideas too.
 - [local_rules.xml](phase3-siem/local_rules.xml)
 - [Wazuh Detection Drills](phase3-siem/wazuh-detection-drills.md)
 - [Wazuh Manager Commands](phase3-siem/wazuh-commands.md)
+
+## Phase 4 - SPLUNK 
