@@ -115,3 +115,18 @@ Phrase Searching
 
 - Exact phrases must be enclosed in quotes to ensure precise matching.
 A backslash character can be used to escape quotes when searching for results that contain literal quotation marks.
+
+
+## Search I ran
+- SPL: source="tutorialdata.zip:*" host="si-i-0c74b8298cbe6a4df.prd-p-vneln.splunkcloud.com"| stats count by sourcetype
+- stats count: 109864
+- stats count by sourcetype: 3 rows 
+- Time range: All time
+- What I was looking for: Check that the uploaded zip was searchable, and how the logs split by sourcetype.
+
+## Three commands I used
+| Command | What it did in this search |
+|----------|-------------------------------|
+| source= and host= | Limited results to events from the uploaded zip, and to that host value |
+| stats count | One total for matching events (109864) |
+| stats count by sourcetype | Same events, split by sourcetype (3 rows) |
