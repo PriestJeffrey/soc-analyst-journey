@@ -43,4 +43,4 @@ Don't hesitate to share your ideas too.
 - [Wazuh Manager Commands](phase3-siem/wazuh-commands.md)
 
 ## Phase 4 - SPLUNK 
-[splunk-intro-notes](phase4-splunk/%20splunk-%20intro%20-%20notes.md)
+- [splunk-intro-notes](phase4-splunk/splunk-intro-notes.md)
