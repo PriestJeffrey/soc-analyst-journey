@@ -143,9 +143,3 @@ A backslash character can be used to escape quotes when searching for results th
 | source= and host= | Limited results to events from the uploaded zip, and to that host value |
 | stats count | One total for matching events (109864) |
 | stats count by sourcetype | Same events, split by sourcetype (3 rows) |
-
-## Search I ran
-- SPL: sourcetype=secure-2 "Failed password"
-- Events: 33253
-- Time: All time
-- What I was looking for: Failed SSH logins in the auth logs. I used sourcetype=secure-2, opened one event, then searched for the wording "Failed password".
