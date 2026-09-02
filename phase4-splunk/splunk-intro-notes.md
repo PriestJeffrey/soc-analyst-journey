@@ -124,6 +124,19 @@ A backslash character can be used to escape quotes when searching for results th
 - Time range: All time
 - What I was looking for: Check that the uploaded zip was searchable, and how the logs split by sourcetype.
 
+## Search I ran
+- SPL: sourcetype=secure-2 "Failed password"
+- Events: 33253
+- Time: All time
+- What I was looking for: Failed SSH logins in the auth logs. I used sourcetype=secure-2, opened one event, then searched for the wording "Failed password".
+
+## Search I ran
+- SPL: sourcetype=secure-2 "Failed password" "194.8.74.23"
+- Events: 132
+- Time: All time
+- What I was looking for: How many failed passwords came from 194.8.74.23. That IP was in the raw log, not in Interesting Fields. 132 of 33253 failed-password events matched.
+
+
 ## Three commands I used
 | Command | What it did in this search |
 |----------|-------------------------------|
