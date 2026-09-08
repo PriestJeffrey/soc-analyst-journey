@@ -136,6 +136,11 @@ A backslash character can be used to escape quotes when searching for results th
 - Time: All time
 - What I was looking for: How many failed passwords came from 194.8.74.23. That IP was in the raw log, not in Interesting Fields. 132 of 33253 failed-password events matched.
 
+## Search 4 — local Splunk Enterprise
+- SPL: sourcetype="www1/secure" "Failed password"
+- Events: 33253
+- Time: All time
+- What I was looking for: Same failed SSH passwords as Search 2. Cloud used sourcetype secure-2. This install used www1/secure because Host was Segment in path 1. Same logs.
 
 ## Three commands I used
 | Command | What it did in this search |
