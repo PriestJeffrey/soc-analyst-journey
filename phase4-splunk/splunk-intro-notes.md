@@ -117,20 +117,20 @@ Phrase Searching
 A backslash character can be used to escape quotes when searching for results that contain literal quotation marks.
 
 
-## Search I ran
+## Search 1 
 - SPL: source="tutorialdata.zip:*" host="si-i-0c74b8298cbe6a4df.prd-p-vneln.splunkcloud.com"| stats count by sourcetype
 - stats count: 109864
 - stats count by sourcetype: 3 rows 
 - Time range: All time
 - What I was looking for: Check that the uploaded zip was searchable, and how the logs split by sourcetype.
 
-## Search I ran
+## Search 2
 - SPL: sourcetype=secure-2 "Failed password"
 - Events: 33253
 - Time: All time
 - What I was looking for: Failed SSH logins in the auth logs. I used sourcetype=secure-2, opened one event, then searched for the wording "Failed password".
 
-## Search I ran
+## Search 3
 - SPL: sourcetype=secure-2 "Failed password" "194.8.74.23"
 - Events: 132
 - Time: All time
