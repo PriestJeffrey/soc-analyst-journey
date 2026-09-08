@@ -174,7 +174,6 @@ A backslash character can be used to escape quotes when searching for results th
 - top row: 87.194.216.51 / 1036
 - Time: All time
 - What I was looking for: Which client IP hit the website most. stats count by clientip and sort -count. 87.194.216.51 had 1036 of 39532 web events (182 unique clients).
-87.194.216.51 hit the site the most
 
 ## Three commands I used
 | Command | What it did in this search |
