@@ -158,18 +158,22 @@ A backslash character can be used to escape quotes when searching for results th
 ## Search 7 — local
 - SPL: sourcetype="access_combined_wcookie"
 - Events: 39,532
-
+- Time: All time
+- What I was looking for: How many events are in the web sourcetype access_combined_wcookie.
+  
 ## Search 8 - Local 
 - SPL: sourcetype="access_combined_wcookie" status=404
 - Events: 690
 - Time: All time
-HTTP not-found using the status field. 
+- What I was looking for: I was looking for how many requests were not found.
+
 
 ## Search 9 - Local
 - SPL: sourcetype="access_combined_wcookie" | stats count by clientip | sort -count
 - Statistics rows: 182
 - top row: 87.194.216.51 / 1036
 - Time: All time
+- What I was looking for: HTTP not-found using the status field. 
 87.194.216.51 hit the site the most
 
 ## Three commands I used
