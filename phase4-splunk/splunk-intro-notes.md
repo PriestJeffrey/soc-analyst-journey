@@ -187,7 +187,7 @@ A backslash character can be used to escape quotes when searching for results th
 - What I was looking for: Total events in this sourcetype as a single Statistics row (same 30,244 as Search 10).
 Event fields: VendorID, Code, AcctID. vendorID (lowercase v) returned Statistics (0); Splunk field names are case-sensitive.
 
-#Search 12 - Local 
+## Search 12 - Local 
 - SPL: sourcetype="vendor_sales/vendor_sales" | stats count by VendorID | sort -count
 - Events: 30,244
 - Statistics rows: 460
