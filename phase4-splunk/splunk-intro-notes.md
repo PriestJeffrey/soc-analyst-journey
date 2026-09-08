@@ -148,6 +148,13 @@ A backslash character can be used to escape quotes when searching for results th
 - Time: All time
 - What I was looking for: How many failed passwords came from 194.8.74.23. That IP was in the raw log, not in Interesting Fields. 132 of 33253 failed-password events matched.
 
+## Search 6 — local, top source IPs
+- SPL: sourcetype="www1/secure" "Failed password" | rex "from (?<src_ip>\d+\.\d+\.\d+\.\d+)" | stats count by src_ip | sort -count
+- Statistics rows: 185
+- Top row: 87.194.216.51 / 948
+- Time: All time
+- What I was looking for: Which source IP had the most failed SSH passwords. rex created src_ip; stats + sort ranked them. 87.194.216.51 had 948. The IP from one event (194.8.74.23) only had 132, so it was not the loudest.
+
 ## Three commands I used
 | Command | What it did in this search |
 |----------|-------------------------------|
