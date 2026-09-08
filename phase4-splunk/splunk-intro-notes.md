@@ -167,13 +167,31 @@ A backslash character can be used to escape quotes when searching for results th
 - Time: All time
 - What I was looking for: I was looking for how many requests were not found.
 
-
 ## Search 9 - Local
 - SPL: sourcetype="access_combined_wcookie" | stats count by clientip | sort -count
 - Statistics rows: 182
 - top row: 87.194.216.51 / 1036
 - Time: All time
 - What I was looking for: Which client IP hit the website most. stats count by clientip and sort -count. 87.194.216.51 had 1036 of 39532 web events (182 unique clients).
+
+# Search 10 - Local
+- SPL: sourcetype="vendor_sales/vendor_sales"
+- Events: 30,244
+- Time: All time 
+- What I was looking for: How many events are in the sourcetype vendor_sales/vendor_sales
+
+# Search 11 - Local 
+- SPL: sourcetype="vendor_sales/vendor_sales" | stats count
+- Events: 30,244
+- Time: All time
+- What I was looking for: Total events in this sourcetype as a single Statistics row (same 30,244 as Search 10).
+Event fields: VendorID, Code, AcctID. vendorID (lowercase v) returned Statistics (0); Splunk field names are case-sensitive.
+
+#Search 12 - Local 
+- SPL: sourcetype="vendor_sales/vendor_sales" | stats count by VendorID | sort -count
+- Events: 30,244
+- Statistics rows: 460
+- What I was looking for: Which vendor had the most sales events. Top VendorID 1060 had 135 of 30,244 events (460 unique vendors).
 
 ## Three commands I used
 | Command | What it did in this search |
