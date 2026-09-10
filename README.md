@@ -1,46 +1,52 @@
-# SOC Analyst Journey
+# SOC analyst home lab
 
-## About Me
-My name is Adjei Jeffery Amoafo, an IT professional with 
-experience in IT support and infrastructure.
+Adjei Jeffery Amoafo. Accra, Ghana.  
+NOC / infrastructure (AirtelTigo, Jan 2023 to Jan 2025). Targeting SOC Analyst (L1).
+
+This repo is the lab: SIEM deploy, alert triage (false positive vs true positive), and custom detections.  
+LinkedIn: [jeffery-adjei-0b38802a2](https://www.linkedin.com/in/jeffery-adjei-0b38802a2)
+
+## What this repo proves
+
+- Wazuh (Docker) + Windows agent + Sysmon. Alerts triaged and documented, not just screenshots.
+- Custom Wazuh rules for discovery commands (cmd spawning whoami, ipconfig, tasklist) and false-positive exclusions. Rules: `phase3-siem/local_rules.xml`.
+- Packet and Windows log investigations (pcap, Sysmon, PsExec hunt).
+- Splunk search practice, including pivoting one IP across auth and web logs. Intro lab, not production SOC Splunk.
+
+## Start here (Wazuh)
+
+1. [Wazuh deployment](phase3-siem/wazuh-deployment.md)
+2. [Alert investigation: node.exe (FP)](phase3-siem/Alert%20Investigation%20-%20node.exe.md)
+3. [Custom detection: cmd.exe spawned whoami.exe (T1033)](phase3-siem/wazuh-custom-detection-whoami.md)
+4. [Detection drills](phase3-siem/wazuh-detection-drills.md) and [manager commands](phase3-siem/wazuh-commands.md)
+
+## Wazuh (SIEM)
+
+- [Detection tuning](phase3-siem/wazuh-detection-tuning.md)
+- [Cursor.exe to Explorer (T1055 FP)](phase3-siem/Alert%20Investigation%20-%20cursor-explorer.md)
+- [MoUsoCoreWorker.exe loaded taskschd.dll (T1053.005 FP)](phase3-siem/Alert%20Investigation%20-%20mousocoreworker-taskschd.md)
+- [pool_tags_summary.json.dup (Sysmon EID 11)](phase3-siem/Alert%20Investigation%20-%20pool-tags-summary.md)
+- [local_rules.xml](phase3-siem/local_rules.xml)
+
+## Splunk
+
+- [Intro search notes](phase4-splunk/splunk-intro-notes.md) (in progress)
+
+## Logs and packets
+
+- [Windows event logs](phase2-log-analysis/windows-event-logs.md)
+- [Sysmon notes](phase2-log-analysis/sysmon-notes.md)
+- [PsExec hunt](phase2-log-analysis/PsExec%20Hunt.md)
+- [Tomcat takeover](phase2-log-analysis/Tomcat%20Takeover.md)
+- [Web investigation](phase2-log-analysis/Web%20investigation.md)
+- [pcap investigation 01](phase1-networking/pcap-investigation-01.md)
+- [pcap investigation 02](phase1-networking/pcap-investigation-02.md)
+- [pcap investigation 03](phase1-networking/pcap-investigation-03.md)
+- [Nmap reconnaissance](phase1-networking/nmap-reconnaissance.md)
+- [Wireshark basics](phase1-networking/wireshark-basics.md)
 
 ## Certifications
+
 - Cisco CyberOps Associate
-- Cisco CCNA Introduction to Networks
-- Microsoft Azure Fundamentals AZ-900
-- Google Project Management Certificate
-
-## About This Repository
-This repository documents my hands-on journey into SOC 
-Analysis and Linux from scratch. You will find my mistakes 
-and my wins. Go through them and learn from them as well.
-
-## What You Will Find Here
-- Bandit wargame writeups
-- Linux command notes
-- SOC Labs
-- Investigation documentation
-
-## My Goal
-To become proficient in Linux and ultimately work as a 
-SOC Analyst.
-
-## Let's Connect
-Follow along as we grow in this journey together. 
-Don't hesitate to share your ideas too.
-
-## Phase 3 - SIEM (Wazuh)
-
-- [Wazuh Deployment](phase3-siem/wazuh-deployment.md)
-- [Alert Investigation — node.exe (False Positive Triage)](phase3-siem/Alert%20Investigation%20-%20node.exe.md)
-- [Alert Investigation — Cursor.exe → Explorer (T1055 FP)](phase3-siem/Alert%20Investigation%20-%20cursor-explorer.md)
-- [Alert Investigation — MoUsoCoreWorker.exe loaded taskschd.dll (T1053.005 FP)](phase3-siem/Alert%20Investigation%20-%20mousocoreworker-taskschd.md)
-- [Alert Investigation — pool_tags_summary.json.dup (Sysmon EID11)](phase3-siem/Alert%20Investigation%20-%20pool-tags-summary.md)
-- [Wazuh detection tuning](phase3-siem/wazuh-detection-tuning.md)
-- [Wazuh Custom Detection - cmd.exe spawned whoami.exe (T1033)](phase3-siem/wazuh-custom-detection-whoami.md)
-- [local_rules.xml](phase3-siem/local_rules.xml)
-- [Wazuh Detection Drills](phase3-siem/wazuh-detection-drills.md)
-- [Wazuh Manager Commands](phase3-siem/wazuh-commands.md)
-
-## Phase 4 - SPLUNK 
-- [splunk-intro-notes](phase4-splunk/splunk-intro-notes.md)
+- Cisco CCNA: Introduction to Networks (not full CCNA)
+- Microsoft Azure Fundamentals (AZ-900)
