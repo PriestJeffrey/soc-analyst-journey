@@ -193,6 +193,19 @@ Event fields: VendorID, Code, AcctID. vendorID (lowercase v) returned Statistics
 - Statistics rows: 460
 - What I was looking for: Which vendor had the most sales events. Top VendorID 1060 had 135 of 30,244 events (460 unique vendors).
 
+## Search 13 - Local   
+- SPL 1: sourcetype="www1/secure" "Failed password" "87.194.216.51"
+- Events: 948
+- Time: All time
+- what i was looking for: how many failed-password events for 87.194.216.51 on www1/secure.
+
+- SPL2: sourcetype="access_combined_wcookie" clientip="87.194.216.51" 
+- Events: 1036
+- Time: All time
+- what i was looking for: how many web events for 87.194.216.51 on access_combined_wcookie.
+
+Same IP 87.194.216.51 has 948 failed SSH passwords and 1,036 web requests. That is one address in two sourcetypes, not proof of one person or one user.
+  
 ## Three commands I used
 | Command | What it did in this search |
 |----------|-------------------------------|
