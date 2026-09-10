@@ -49,4 +49,3 @@ LinkedIn: [jeffery-adjei-0b38802a2](https://www.linkedin.com/in/jeffery-adjei-0b
 
 - Cisco CyberOps Associate
 - Cisco CCNA: Introduction to Networks (not full CCNA)
-- Microsoft Azure Fundamentals (AZ-900)
