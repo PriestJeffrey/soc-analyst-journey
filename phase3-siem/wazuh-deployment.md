@@ -7,7 +7,7 @@ I deployed Wazuh, connected a Windows agent, ingested Sysmon logs, and investiga
 
 Wazuh is an open-source security platform that combines three capabilities in one;
 1. SIEM: Collects, aggregates, and analyzes logs from multiple sources
-2. EDR: Monitors endpoints for threats — file changes, process creation, network connections.
+2. EDR: Monitors endpoints for threats file changes, process creation, network connections.
 3. XDR: Correlates data across endpoints, networks, and applications
 
 ## Architecture
