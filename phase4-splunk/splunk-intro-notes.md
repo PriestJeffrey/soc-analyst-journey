@@ -242,6 +242,14 @@ Finding: space = AND (0 events). OR without parens pulled all web logs. OR with 
 - Peak date and count: Monday 24 Aug 2026 count 214
 - What i was looking for: When 404s spiked. Total 1,380. Peak bucket 24 Aug 2026 / 214, one day after the SSH and web burst.
 
+## Search 19 - Local 
+- SPL: sourcetype="www1/secure" "Failed password" | timechart count | where count > 10000
+- Events: 66,506
+- Statistics: 2 rows
+- Time: All time
+- Peak dates and counts: Sat Aug 22 2026 with count 10,068 & Sun Aug 23 2026 with count 10,018
+- what i was looking for: Keep only loud days on the timechart. where count > 10000 left 2 rows (22 Aug 10,068 and 23 Aug 10,018). where filters the table timechart built, not the 66,506 raw events.
+
 ## Three commands I used
 | Command | What it did in this search |
 |----------|-------------------------------|
