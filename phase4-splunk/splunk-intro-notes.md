@@ -214,8 +214,12 @@ Same IP 87.194.216.51 has 948 failed SSH passwords and 1,036 web requests. That 
 
 Finding: space = AND (0 events). OR without parens pulled all web logs. OR with two full piles is the pivot in one job. Count is 2× Search 13 because the zip was ingested twice.
 
-
-
+## Search 15 - Local
+- SPL: sourcetype="www1/secure" "Failed password" "87.194.216.51"| timechart count
+- Events: 1,896
+- Time: All time
+- Peak date and count: 23 Aug 2026 with a peak count 446
+- what i was looking for: how many failed password events happened at certain periods of time and their peak counts in those time periods
   
 ## Three commands I used
 | Command | What it did in this search |
