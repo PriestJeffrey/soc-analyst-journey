@@ -236,8 +236,11 @@ Finding: space = AND (0 events). OR without parens pulled all web logs. OR with 
 - what i was looking for: how many failed passwords happened and their peak dates and counts
 
 ## Search 18 - Local
-- SPL: 
-
+- SPL: sourcetype="access_combined_wcookie" status=404 | timechart count
+- Events: 1,380
+- Time: All time
+- Peak date and count: Monday 24 Aug 2026 count 214
+- What i was looking for: how many error 404 happened at the peak date with peak counts. 
 
 ## Three commands I used
 | Command | What it did in this search |
