@@ -250,6 +250,29 @@ Finding: space = AND (0 events). OR without parens pulled all web logs. OR with 
 - Peak dates and counts: Sat Aug 22 2026 with count 10,068 & Sun Aug 23 2026 with count 10,018
 - what i was looking for: Keep only loud days on the timechart. where count > 10000 left 2 rows (22 Aug 10,068 and 23 Aug 10,018). where filters the table timechart built, not the 66,506 raw events.
 
+## Search 20 - Local
+- SPL: sourcetype="access_combined_wcookie" status=404 | timechart count | where count > 200
+- Events: 1,380
+- Statistics: 3 rows
+- Peak date and count: Sun Aug 24 2026 with count 214
+- what i was looking for: Keep only loud days on the timechart. where count > 200 left 2 rows (24 Aug, 2026). where filters the table timechart built, not the 1,380 raw events.
+
+## Search 21 - Local
+- SPL: sourcetype="access_combined_wcookie" clientip="87.194.216.51"| timechart count | where count > 100
+- Events: 2,072
+- Statistics: 7 rows
+- Peak date and count: Sun Aug 23 2026 with count 374
+- what i was looking for: Keep only loud days on the timechart. where count > 100 left 7 rows (23 Aug, 2026). where filters the table timechart built, not the 2,072 raw events.
+
+## Search 22 - Local
+- SPL: sourcetype="vendor_sales/vendor_sales"| timechart count | where count > 1000
+- Events: 60,488
+- Statistics: 8 rows
+- Peak dates and counts: Thur Aug 20 2026 count 8,642, Fri Aug 25 2026 count 8,642
+- what i was looking for: Keep only loud days on the timechart. where count > 1000 left 8 rows (20 Aug, 2026 & 25 Aug 2026 ). where filters the table timechart built, not the 60,488 raw events.
+
+
+
 ## Three commands I used
 | Command | What it did in this search |
 |----------|-------------------------------|
