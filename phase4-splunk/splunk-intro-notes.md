@@ -205,6 +205,17 @@ Event fields: VendorID, Code, AcctID. vendorID (lowercase v) returned Statistics
 - what i was looking for: how many web events for 87.194.216.51 on access_combined_wcookie.
 
 Same IP 87.194.216.51 has 948 failed SSH passwords and 1,036 web requests. That is one address in two sourcetypes, not proof of one person or one user.
+
+## Search 14 - Local
+- SPL: (sourcetype="www1/secure" "Failed password" "87.194.216.51") OR (sourcetype="access_combined_wcookie" clientip="87.194.216.51")
+- Events: 3968
+- Time: All time
+- what i was looking for: Both Search 13 piles in one search: failed SSH passwords or web requests for 87.194.216.51. Space is AND (0 events). OR with two full parenthesized piles is the pivot.
+
+Finding: space = AND (0 events). OR without parens pulled all web logs. OR with two full piles is the pivot in one job. Count is 2× Search 13 because the zip was ingested twice.
+
+
+
   
 ## Three commands I used
 | Command | What it did in this search |
