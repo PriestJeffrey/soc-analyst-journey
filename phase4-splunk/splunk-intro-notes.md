@@ -220,7 +220,19 @@ Finding: space = AND (0 events). OR without parens pulled all web logs. OR with 
 - Time: All time
 - Peak date and count: 23 Aug 2026 with a peak count 446
 - what i was looking for: how many failed password events happened at certain periods of time and their peak counts in those time periods
-  
+
+## Search 16 - Local
+- SPL: sourcetype="access_combined_wcookie" clientip="87.194.216.51"| timechart count
+- Events: 2,072
+- TIme: All time
+- Peak date and count: 23 Aug 2026 with a peak count 374
+- what i was looking for: how many web events for 87.194.216.51 on access_combined_wcookie that happened at certain periods of time and the peak counts.
+
+## Search 17 - Local
+
+
+
+
 ## Three commands I used
 | Command | What it did in this search |
 |----------|-------------------------------|
