@@ -240,7 +240,7 @@ Finding: space = AND (0 events). OR without parens pulled all web logs. OR with 
 - Events: 1,380
 - Time: All time
 - Peak date and count: Monday 24 Aug 2026 count 214
-- What i was looking for: how many error 404 happened at the peak date with peak counts. 
+- What i was looking for: When 404s spiked. Total 1,380. Peak bucket 24 Aug 2026 / 214, one day after the SSH and web burst.
 
 ## Three commands I used
 | Command | What it did in this search |
