@@ -1,15 +1,19 @@
-Question
+## Investigation - Fortigate traffic
+
+### Question
 when do events exist in botsv1?
+- I was looking for the IP that appeared the most and to check if it was an attacker's IP or not.
 
-I was looking for when the logs exist.
-SPL
-index=botsv1 earliest=0 | stats min(_time) as earliest max(_time) as latest | eval earliest_human=strftime(earliest,"%Y-%m-%d %H:%M:%S") | eval latest_human=strftime(latest,"%Y-%m-%d %H:%M:%S")
+### SPL
+index=botsv1 earliest=0 sourcetype=fgt_traffic | stats count by srcip | sort -count
 
-Evidence
-One Statistics row. earliest_human: 2016-08-10 03:28:51. latest_human: 2016-08-24 18:27:44. (Epoch 1470799731 and 1472063264 before strftime.)
+### Evidence
+Statistics (671)
+Events: 55,279
+Top row: 192.168.250.100 with count 36288
 
-Finding
-Events in botsv1 exist from 2016-08-10 03:28:51 to 2016-08-24 18:27:44. That is when logs are in the index. It is not proof the attacker was active for every minute of those 14 days.
+### Finding
+The IP address 192.168.250.100 appeared as the loudest but it doesn't mean it was an attacker's IP. The volume cannot be used to claim it was the attacker's IP. 
 
-MITRE
+### MITRE
 this search does not map to a technique.
