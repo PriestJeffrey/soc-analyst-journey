@@ -1,7 +1,8 @@
 ## Investigation - Fortigate traffic
 
 ### Question
-when do events exist in botsv1?
+### Question
+Which source IP generated the most Fortigate traffic in botsv1? Does that volume mean the host is the attacker?
 - I was looking for the IP that appeared the most and to check if it was an attacker's IP or not.
 
 ### SPL
@@ -13,7 +14,7 @@ Events: 55,279
 Top row: 192.168.250.100 with count 36288
 
 ### Finding
-The IP address 192.168.250.100 appeared as the loudest but it doesn't mean it was an attacker's IP. The volume cannot be used to claim it was the attacker's IP. 
+The IP address 192.168.250.100 appeared as the loudest source (36,288 of 55,279 events) but it doesn't mean it was an attacker's IP. The volume cannot be used to claim it was the attacker's IP. This IP is private/internal so looking it up in VirusTotal does not apply.
 
 ### MITRE
 this search does not map to a technique.
