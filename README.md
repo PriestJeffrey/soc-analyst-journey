@@ -32,6 +32,7 @@ LinkedIn: [jeffery-adjei-0b38802a2](https://www.linkedin.com/in/jeffery-adjei-0b
 
 - [Intro search notes](phase4-splunk/splunk-intro-notes.md)
 - [BOTS v1 ingest](phase4-splunk/botsv1-notes.md)
+- [BOTS v1 investigation 1 — time window](phase4-splunk/Investigation%201.md)
 
 ## Logs and packets
 
