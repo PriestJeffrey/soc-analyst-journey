@@ -1,9 +1,7 @@
 ## Investigation - Fortigate traffic
 
 ### Question
-### Question
 Which source IP generated the most Fortigate traffic in botsv1? Does that volume mean the host is the attacker?
-- I was looking for the IP that appeared the most and to check if it was an attacker's IP or not.
 
 ### SPL
 index=botsv1 earliest=0 sourcetype=fgt_traffic | stats count by srcip | sort -count
