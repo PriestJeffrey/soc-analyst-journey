@@ -48,6 +48,7 @@ index=botsv1 earliest=0 sourcetype=fgt_traffic | stats count by action | sort -c
 
 ### Evidence
 Statistics (6)
+
 Events: 55,279
 
 | Action | Count|
@@ -61,7 +62,7 @@ Events: 55,279
 
 
 ### Finding
-The fact that the port is loudest doesn't mean it's the attack. there is no evidence for that. 
+start is not a block. deny is the block 
 
 ### MITRE
 this search does not map to a technique.
