@@ -49,6 +49,7 @@ index=botsv1 earliest=0 sourcetype=fgt_traffic | stats count by action | sort -c
 ### Evidence
 Statistics (6)
 Events: 55,279
+
 | Action | Count|
 |-------- | --------- | 
 | accept | 30842 |
