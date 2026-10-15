@@ -58,4 +58,4 @@ Events: 55,279
 | timeout |	2 |
 
 ### Finding
-start is not a block. deny is the block. add that close / timeout are session logs too, not blocks.
+start is not a block. deny is the block. deny is the block; start / close / timeout are session logs, not blocks.
