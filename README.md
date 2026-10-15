@@ -34,7 +34,7 @@ LinkedIn: [jeffery-adjei-0b38802a2](https://www.linkedin.com/in/jeffery-adjei-0b
 - [BOTS v1 ingest](phase4-splunk/botsv1-notes.md)
 - [BOTS v1 investigation 1 — time window](phase4-splunk/Investigation%201.md)
 - [BOTS v1 investigation 2 — Fortigate traffic](phase4-splunk/Investigation%202.md)
-- [BOTS v1 fgt-traffic-drills — Drill 1](phase4-splunk/fgt-traffic-drills%203.md)
+- [BOTS v1 fgt-traffic-drills — Drill 1](phase4-splunk/drills%203.md)
 
 ## Logs and packets
 
